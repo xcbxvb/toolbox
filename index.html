@@ -340,12 +340,12 @@ body[data-theme="light"] {
 <div style="display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; margin-bottom:12px;">
     <div style="display:flex; gap:6px; flex-wrap:wrap;">
         <button class="btn" data-filter="all">Tutto</button>
-        <button class="btn" data-filter="robot">Robotica</button> 
+        <button class="btn" data-filter="robot">Robotica</button>
 				<button class="btn" data-filter="net">Networking</button>
         <button class="btn" data-filter="plc">PLC / CNC / Backup</button>
         <button class="btn" data-filter="sys">Windows / Script</button>
         <button class="btn" data-filter="safety">Safety / Collaudo</button>
-    </div> 
+    </div>
 
 
     <div class="grid" id="cardGrid">
@@ -653,7 +653,8 @@ body[data-theme="light"] {
             <div class="card-tag">Script</div>
         </div>
         <div class="card-desc">Rete, sistema, file, WMI.</div>
-        <div class="card-footer"><span class="badge">PS</span></div>
+        <div class="card-footer"><sp    const payloadFilters = document.getElementById("payloadFilters");
+an class="badge">PS</span></div>
     </div>
 
     <div class="card" data-id="prod" data-group="sys" data-label="Office browser produttività scorciatoie edge chrome word excel">
@@ -718,6 +719,11 @@ body[data-theme="light"] {
 
 <script>
 
+document.querySelector("button[data-filter='all']").addEventListener("click", () => {
+    window.location.reload();   // torna alla schermata iniziale identica all'apertura
+});
+
+
 const robotCatalogData = {
     fanuc: [
         { model: "M-10iD/12", payload: "12 kg", reach: "1441 mm", img: "fanuc_m10id12.png" },
@@ -725,13 +731,13 @@ const robotCatalogData = {
         { model: "R-2000iC/210F", payload: "210 kg", reach: "2650 mm", img: "fanuc_r2000ic210f.png" }
     ],
     kuka: [
-        { model: "KR10 R1420", payload: "10 kg", reach: "1420 mm", img: "img/kuka_kr10R1420.png" },
-        { model: "KR10 R1440-2", payload: "10 kg", reach: "1440 mm", img: "img/kuka_kr10R1440-2.png" },
-        { model: "KR60", payload: "60 kg", reach: "2033 mm", img: "img/kuka_kr60.png" }
+        { model: "KR10 R1420", payload: "10 kg", reach: "1420 mm", img: "kuka_kr10R1420.png" },
+        { model: "KR10 R1440-2", payload: "10 kg", reach: "1440 mm", img: "kuka_kr10R1440-2.png" },
+        { model: "KR60", payload: "60 kg", reach: "2033 mm", img: "kuka_kr60.png" }
     ],
     abb: [
-        { model: "IRB1200", payload: "7 kg", reach: "900 mm", img: "img/abb_irb1200.png" },
-        { model: "IRB6700", payload: "150 kg", reach: "3200 mm", img: "img/abb_irb6700.png" }
+        { model: "IRB1200", payload: "7 kg", reach: "900 mm", img: "abb_irb1200.png" },
+        { model: "IRB6700", payload: "150 kg", reach: "3200 mm", img: "abb_irb6700.png" }
     ]
 };
 
