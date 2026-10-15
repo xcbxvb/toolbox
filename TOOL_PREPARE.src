@@ -1,0 +1,146 @@
+&ACCESS RVP
+&PARAM EDITMASK = *
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM DISKPATH = KRC:\R1\PROGRAMMI\GENERALI\MAINTENANCE
+DEF TOOL_PREPARE( )
+;FOLD INI;%{PE}
+  ;FOLD BASISTECH INI
+    GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+    INTERRUPT ON 3 
+    BAS (#INITMOV,0 )
+  ;ENDFOLD (BASISTECH INI)
+  ;FOLD USER INI
+    ;Make your modifications here
+
+  ;ENDFOLD (USER INI)
+;ENDFOLD (INI)
+
+;FOLD SPTP HOME Vel=50 % DEFAULT ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.spline; Kuka.IsGlobalPoint=False; Kuka.PointName=HOME; Kuka.BlendingEnabled=False; Kuka.MoveDataPtpName=DEFAULT; Kuka.VelocityPtp=50; Kuka.VelocityFieldEnabled=True; Kuka.ColDetectFieldEnabled=True; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=SPTP
+;ENDFOLD
+SPTP XHOME WITH $VEL_AXIS[1] = SVEL_JOINT(50.0), $TOOL = STOOL2(FHOME), $BASE = SBASE(FHOME.BASE_NO), $IPO_MODE = SIPO_MODE(FHOME.IPO_FRAME), $LOAD = SLOAD(FHOME.TOOL_NO), $ACC_AXIS[1] = SACC_JOINT(PDEFAULT), $APO = SAPO_PTP(PDEFAULT), $GEAR_JERK[1] = SGEAR_JERK(PDEFAULT), $COLLMON_TOL_PRO[1] = USE_CM_PRO_VALUES(0)
+;ENDFOLD
+
+;FOLD ; FOLLOWING MOVE WILL SET LASER OPTICS PARALLEL TO ROBOT BASE 0 (NULLFRAME) ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=FOLLOWING MOVE WILL SET LASER OPTICS PARALLEL TO ROBOT BASE 0 (NULLFRAME)
+;ENDFOLD
+;ENDFOLD
+;FOLD PTP P1 Vel=50 % PDAT1 Tool[0] Base[0] ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=P1; Kuka.BlendingEnabled=False; Kuka.MoveDataPtpName=PDAT1; Kuka.VelocityPtp=50; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP
+;ENDFOLD
+$BWDSTART = FALSE
+PDAT_ACT = PPDAT1
+FDAT_ACT = FP1
+BAS(#PTP_PARAMS, 50.0)
+SET_CD_PARAMS (0)
+PTP XP1
+;ENDFOLD
+HALT
+;FOLD ; FOLLOWING MOVE BRINGS ROBOT 390mm FAR FROM REFERENCE POINT ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=FOLLOWING MOVE BRINGS ROBOT 390mm FAR FROM REFERENCE POINT
+;ENDFOLD
+;ENDFOLD
+;FOLD LIN Nominal Vel=0.5 m/s CPDAT1 Tool[0] Base[0] ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=Nominal; Kuka.BlendingEnabled=False; Kuka.MoveDataName=CPDAT1; Kuka.VelocityPath=0.5; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN
+;ENDFOLD
+$BWDSTART = FALSE
+LDAT_ACT = LCPDAT1
+FDAT_ACT = FNominal
+BAS(#CP_PARAMS, 0.5)
+SET_CD_PARAMS (0)
+LIN XNominal
+;ENDFOLD
+HALT
+
+;FOLD ; PLEASE VERFY CORRECT DISTANCE FROM PLATE TO LENS HOLDER BORDER TO BE 390 mm ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=PLEASE VERFY CORRECT DISTANCE FROM PLATE TO LENS HOLDER BORDER TO BE 390 mm
+;ENDFOLD
+;ENDFOLD
+;FOLD ; PARK MIRRORS AND CALL LASER GUIDE ON ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=PARK MIRRORS AND CALL LASER GUIDE ON
+;ENDFOLD
+;ENDFOLD
+;FOLD ; MOVE MANUALLY IN X XOR Y BASE 0 (NULLFRAME) AND BRING THE LASER GUIDE EXACTELY TO THE REFERENCE POINT HOLE ON THE PLATE ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=MOVE MANUALLY IN X XOR Y BASE 0 (NULLFRAME) AND BRING THE LASER GUIDE EXACTELY TO THE REFERENCE POINT HOLE ON THE PLATE
+;ENDFOLD
+;ENDFOLD
+;FOLD ; TOUCH UP CORRECTED NOMINAL POSITION ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=TOUCH UP CORRECTED NOMINAL POSITION
+;ENDFOLD
+;ENDFOLD
+;FOLD LIN Nominal Vel=0.5 m/s CPDAT2 Tool[0] Base[0] ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=Nominal; Kuka.BlendingEnabled=False; Kuka.MoveDataName=CPDAT2; Kuka.VelocityPath=0.5; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN
+;ENDFOLD
+$BWDSTART = FALSE
+LDAT_ACT = LCPDAT2
+FDAT_ACT = FNominal
+BAS(#CP_PARAMS, 0.5)
+SET_CD_PARAMS (0)
+LIN XNominal
+;ENDFOLD
+HALT
+;FOLD ; SET INCREMENTAL JOGGING TO 100 mm ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=SET INCREMENTAL JOGGING TO 100 mm
+;ENDFOLD
+;ENDFOLD
+;FOLD ; JOG ROBOT 100 mm in Z+ BASE 0 TOOL 0. POINTER MUST STAY IN THE REFERENCE POINT ON PLATE ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=JOG ROBOT 100 mm in Z+ BASE 0 TOOL 0. POINTER MUST STAY IN THE REFERENCE POINT ON PLATE
+;ENDFOLD
+;ENDFOLD
+;FOLD ; IF NOT, SET INCREMENTAL JOGGING TO 0.1 mm, ROTATE IN THE OPPOSITE DIRECTION OF MISPLACEMENT BY HALF OF ITS AMOUNT STILL USING BASE 0 TOOL 0 ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=IF NOT, SET INCREMENTAL JOGGING TO 0.1 mm, ROTATE IN THE OPPOSITE DIRECTION OF MISPLACEMENT BY HALF OF ITS AMOUNT STILL USING BASE 0 TOOL 0
+;ENDFOLD
+;ENDFOLD
+;FOLD ; SET INCREENTAL JOGING TO 100 mm AND BRING POINTER BACK TO REFERENCE POINT ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=SET INCREENTAL JOGING TO 100 mm AND BRING POINTER BACK TO REFERENCE POINT
+;ENDFOLD
+;ENDFOLD
+;FOLD ; REPEAT OPERATION FROM LINE 18 OF PROGRAM TILL LASER PONTER WILL STAY STEADY ON REFERENCE POINT ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=REPEAT OPERATION FROM LINE 18 OF PROGRAM TILL LASER PONTER WILL STAY STEADY ON REFERENCE POINT
+;ENDFOLD
+;ENDFOLD
+;FOLD ; PLEASE REFER TO USER MANUAL FOR A MORE EXTENSIVE EXPLAINATION OF THIS PROCEDURE ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=PLEASE REFER TO USER MANUAL FOR A MORE EXTENSIVE EXPLAINATION OF THIS PROCEDURE
+;ENDFOLD
+;ENDFOLD
+;FOLD ; ONCE DONE PLEASE TOUCH UP FOLLOWING POINT ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=ONCE DONE PLEASE TOUCH UP FOLLOWING POINT
+;ENDFOLD
+;ENDFOLD
+;FOLD LIN Corrected Vel=0.5 m/s CPDAT4 Tool[0] Base[0] ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=Corrected; Kuka.BlendingEnabled=False; Kuka.MoveDataName=CPDAT4; Kuka.VelocityPath=0.5; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN
+;ENDFOLD
+$BWDSTART = FALSE
+LDAT_ACT = LCPDAT4
+FDAT_ACT = FCorrected
+BAS(#CP_PARAMS, 0.5)
+SET_CD_PARAMS (0)
+LIN XCorrected
+;ENDFOLD
+HALT
+
+;FOLD ; DON'T MOVE ROBOT ANY FURTHER AND PROCCED TO TOOL 1 CALCULATION ;%{PE}
+;FOLD Parameters ;%{h}
+;Params IlfProvider=kukaroboter.basistech.inlineforms.comments.comment; Kuka.Content=DON&#39&sc/T MOVE ROBOT ANY FURTHER AND PROCCED TO TOOL 1 CALCULATION
+;ENDFOLD
+;ENDFOLD
+
+END
