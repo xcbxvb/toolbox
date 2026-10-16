@@ -6,12 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 
-.catalog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
+
 .catalog-card img {
     width: 100%;
     height: auto;
@@ -139,6 +134,7 @@
 #downloadArea .btn {
     color: var(--panel-text);
 }
+
 #panelTitle {
     color: var(--panel-text);
 }
@@ -146,12 +142,16 @@
 #panelContent {
     color: var(--panel-text);
 }
-:root {
-    --panel-text: #ffffff; /* testo bianco di default */
-}
 
 :root {
-    --card-size: 280px; /* dimensione base */
+    --panel-text: #ffffff; /* testo bianco di default */
+    --card-size: 280px;
+    --card-text: #ffffff;
+}
+
+[data-theme="light"] {
+    --panel-text: #000000; /* testo nero in tema chiaro */
+    --card-text: #000000;
 }
 
 .grid {
@@ -165,13 +165,7 @@
     transition: all 0.15s ease;
 }
 
-[data-theme="light"] {
-    --panel-text: #000000; /* testo nero in tema chiaro */
-}
 
-:root {
-    --card-text: #ffffff; /* testo bianco in tema scuro */
-}
 .card-title,
 .card-desc,
 .card-tag,
@@ -319,20 +313,12 @@ body[data-theme="light"] {
         margin: 0 auto;
         width: 100%;
     }
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
-    width: 100%;
-}
+
 
 .container {
     padding: 12px;
 }
 
-.card {
-    transition: all 0.15s ease;
-}
 
     .card {
         background: linear-gradient(145deg, var(--card), var(--bg-alt));
@@ -444,6 +430,18 @@ body[data-theme="light"] {
     white-space: pre-wrap;
 }
 
+
+/* 🔥 Ridimensionamento reale delle card */
+.card {
+    transform: scale(calc(var(--card-size) / 280));
+    transform-origin: top left;
+}
+
+/* 🔥 Ridimensionamento automatico degli spazi */
+.grid {
+    gap: calc(var(--card-size) / 20);
+}
+
 <style>
 #panelContent {
     white-space: pre-wrap;
@@ -485,7 +483,6 @@ body[data-theme="light"] {
     <button id="backButton" class="btn" style="display:none; margin-top:10px;">
         ⬅️ Indietro
     </button>
-</div>
 
 <!-- 🔠 CONTROLLI DIMENSIONE CARD (punto esatto) -->
 <div class="card-size-controls" style="margin-bottom:12px; display:flex; gap:10px;">
@@ -493,9 +490,8 @@ body[data-theme="light"] {
     <button id="cardPlus" class="btn">+</button>
 </div>
 
+</div>
 <div class="grid" id="cardGrid">
-
-
 
 
 
@@ -515,16 +511,14 @@ body[data-theme="light"] {
 <div id="robotCatalog" class="catalog-grid" style="display:none;"></div>
 
 
-    <div class="card" data-id="auto" data-group="robot" data-label="Automazione industriale fanuc kuka abb yaskawa comau ur robot">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🤖</span><span>Panoramica Robot Industriali</span></div>
-            <div class="card-tag">Robotica</div>
-        </div>
-        <div class="card-desc">Funzioni chiave per Fanuc, KUKA, ABB, Yaskawa, Comau e UR.</div>
-        <div class="card-footer"><span class="badge">Multi-brand</span></div>
+<div class="card" data-id="auto" data-group="robot" data-label="Automazione industriale fanuc kuka abb yaskawa comau ur robot">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🤖</span><span>Panoramica Robot Industriali</span></div>
+        <div class="card-tag">Robotica</div>
     </div>
-
-<div id="robotModelMenu" style="display:none; margin-top:12px; gap:10px; flex-wrap:wrap;" class="flex"></div>
+    <div class="card-desc">Funzioni chiave per Fanuc, KUKA, ABB, Yaskawa, Comau e UR.</div>
+    <div class="card-footer"><span class="badge">Multi-brand</span></div>
+</div>
 
 <div class="card" data-id="fanuc_signals" data-group="robot" data-category="fanuc" data-label="fanuc segnali sistema ui uo imstp hold sfspd start reset rsr">
     <div class="card-header">
@@ -799,8 +793,6 @@ body[data-theme="light"] {
     <div class="card-footer"><span class="badge">Office</span></div>
 </div>
 
-
-
     <!-- SAFETY / COLLAUDO -->
    
 
@@ -822,10 +814,13 @@ body[data-theme="light"] {
     <div class="card-footer"><span class="badge">Safety</span></div>
 </div>
 
+		<!-- 🔥 CHIUSURA CORRETTA DELLA GRIGLIA -->
 </div>
-		
-		
-<!-- 🔐 SCHERMATA PASSWORD -->
+
+
+		<!-- 🔐 SCHERMATA PASSWORD -->
+
+
 <div id="passwordScreen" style="
     position: fixed;
     inset: 0;
@@ -850,6 +845,9 @@ body[data-theme="light"] {
 </div>
 
 
+
+		<!-- PANNELLO DETTAGLI -->
+		
 <section class="panel" id="detailPanel" style="display:none;">
     <div class="panel-header">
         <div>
@@ -876,15 +874,16 @@ body[data-theme="light"] {
     
     <!-- Pulsanti download file KUKA -->
     <div id="downloadArea" style="margin-top:12px; display:none;">
-    <a href="TOOL_PREPARE.src" download class="btn">📥 Scarica TOOL_PREPARE.src</a>
-    <a href="TOOL_PREPARE.dat" download class="btn">📥 Scarica TOOL_PREPARE.dat</a>
-    <a href="TOOL_PREPARE.zip" download class="btn">🗜️ Scarica ZIP (src + dat)</a>
-</div>
-
-</div>
+    	<a href="TOOL_PREPARE.src" download class="btn">📥 Scarica TOOL_PREPARE.src</a>
+    	<a href="TOOL_PREPARE.dat" download class="btn">📥 Scarica TOOL_PREPARE.dat</a>
+    	<a href="TOOL_PREPARE.zip" download class="btn">🗜️ Scarica ZIP (src + dat)</a>
 		</div>
 
+</div>
+
     </section>
+    
+    
 </main>
 
 <footer>
@@ -2817,28 +2816,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const plus = document.getElementById("cardPlus");
     const minus = document.getElementById("cardMinus");
 
-    if (!plus || !minus) return;
-
     let size = 280; // base
 
     function applySize() {
         document.documentElement.style.setProperty("--card-size", size + "px");
+        console.log("card-size =", size);
     }
 
     applySize();
 
     plus.addEventListener("click", () => {
-        size = Math.min(size + 20, 500);
+        size = Math.min(size + 40, 600);
         applySize();
     });
 
     minus.addEventListener("click", () => {
-        size = Math.max(size - 20, 160);
+        size = Math.max(size - 40, 120);
         applySize();
     });
 });
-
-
 
 // 🔐 Password dinamica giornaliera: aaaammgg
 function getDailyPassword() {
