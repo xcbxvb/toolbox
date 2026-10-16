@@ -63,11 +63,38 @@
     opacity: 0.85;
 }
 
+/* Scheda dei dettagli più grande */
 #detailPanel {
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
+    width: 90%;               /* più larga */
+    max-width: 1200px;        /* limite elegante */
+    margin: 20px auto;        /* centrata */
+    padding: 24px;            /* più spazio interno */
+    border-radius: 14px;      /* bordi più morbidi */
+    font-size: 18px;          /* testo più grande */
 }
+
+/* Contenuto interno più leggibile */
+#panelContent {
+    font-size: 18px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+/* Header più grande */
+.panel-header {
+    margin-bottom: 20px;
+}
+
+.panel-title {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.panel-sub {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
 
 #downloadArea .btn {
     color: var(--panel-text);
@@ -145,7 +172,27 @@ body[data-theme="light"] {
     background-color: #f7d400;
 }
     
-    
+    /* Pulsante indietro super visibile */
+#backButton {
+    padding: 16px 28px;          /* grande */
+    font-size: 22px;             /* testo grande */
+    font-weight: bold;           /* più leggibile */
+    background: #ffcc00;         /* giallo acceso */
+    color: #000;                 /* testo nero */
+    border-radius: 12px;         /* bordi arrotondati */
+    border: 3px solid #000;      /* bordo forte */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35); /* ombra potente */
+    cursor: pointer;
+    display: none;               /* appare solo quando serve */
+    margin-top: 20px;            /* distanziato dalla scheda */
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#backButton:hover {
+    transform: scale(1.10);      /* effetto zoom */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+}
+
     
     header {
         background: linear-gradient(90deg, #0078d4, #4ea3ff);
@@ -317,6 +364,17 @@ body[data-theme="light"] {
         .controls { width: 100%; justify-content: space-between; }
         .search-input { width: 60%; }
     }
+    
+    #panelContent {
+    white-space: pre-wrap;
+}
+
+<style>
+#panelContent {
+    white-space: pre-wrap;
+}
+</style>
+
 </style>
 </head>
 <body data-theme="dark">  
@@ -345,17 +403,18 @@ body[data-theme="light"] {
         <button class="btn" data-filter="plc">PLC / CNC / Backup</button>
         <button class="btn" data-filter="sys">Windows / Script</button>
         <button class="btn" data-filter="safety">Safety / Collaudo</button>
-    </div>
-
-
-    <div class="grid" id="cardGrid">
+    </div>
+    
+		<!-- 🔥 PULSANTE INDIETRO NELLA SCHERMATA PRINCIPALE -->
+				<button id="backButton" class="btn" style="display:none; margin-top:10px;">
+    		⬅️ Indietro
+		</button>
 <div class="grid" id="cardGrid">
 
 
+
+
     <!-- ROBOTICA -->
-
-
-
 
 <div id="robotBrandMenu" style="display:none; margin-top:12px; gap:10px; flex-wrap:wrap;" class="flex">
     <button class="btn" data-brand="fanuc">FANUC</button>
@@ -382,7 +441,6 @@ body[data-theme="light"] {
 
 <div id="robotModelMenu" style="display:none; margin-top:12px; gap:10px; flex-wrap:wrap;" class="flex"></div>
 
-
 <div class="card" data-id="fanuc_signals" data-group="robot" data-category="fanuc" data-label="fanuc segnali sistema ui uo imstp hold sfspd start reset rsr">
     <div class="card-header">
         <div class="card-title"><span class="icon">🟡</span><span>FANUC – Segnali di Sistema</span></div>
@@ -392,10 +450,7 @@ body[data-theme="light"] {
     <div class="card-footer"><span class="badge">FANUC</span></div>
 </div>
 
-<div id="robotModelMenu" style="display:none; margin-top:12px; gap:10px; flex-wrap:wrap;" class="flex"></div>
-
-
-<div class="card" data-id="fanuc_eipsafety" data-group="robot" data-category="fanuc"  data-label="fanuc ethernet ip safety dcs cip safety slave configurazione diagnostica">
+<div class="card" data-id="fanuc_cipsafety" data-group="robot" data-category="fanuc"  data-label="fanuc ethernet ip safety dcs cip safety slave configurazione diagnostica">
     <div class="card-header">
         <div class="card-title"><span class="icon">🟡</span><span>FANUC – Ethernet/IP Safety</span></div>
         <div class="card-tag">Robotica</div>
@@ -404,22 +459,12 @@ body[data-theme="light"] {
     <div class="card-footer"><span class="badge">FANUC</span></div>
 </div>
 
-
 <div class="card" data-id="fanuc_quickmaster" data-group="robot" data-category="fanuc"  data-label="fanuc quick mastering procedura mastering calibrazione zero">
     <div class="card-header">
         <div class="card-title"><span class="icon">🟡</span><span>FANUC – Quick Mastering</span></div>
         <div class="card-tag">Robotica</div>
     </div>
     <div class="card-desc">Procedura completa di Quick Mastering FANUC.</div>
-    <div class="card-footer"><span class="badge">FANUC</span></div>
-</div>
-
-<div class="card" data-id="fanuc_eipsafety" data-group="robot" data-category="fanuc" data-label="fanuc ethernet ip safety dcs cip safety slave configurazione diagnostica">
-    <div class="card-header">
-        <div class="card-title"><span class="icon">🟡</span><span>FANUC – Ethernet/IP Safety</span></div>
-        <div class="card-tag">Robotica</div>
-    </div>
-    <div class="card-desc">Configurazione Ethernet/IP Safety (slave) e DCS.</div>
     <div class="card-footer"><span class="badge">FANUC</span></div>
 </div>
 
@@ -468,35 +513,51 @@ body[data-theme="light"] {
     <div class="card-footer"><span class="badge">FANUC</span></div>
 </div>
 
-
-    <div class="card" data-id="fanuc_tcp" data-group="robot" data-category="fanuc" data-label="fanuc tcp calibration tool frame 3 point 6 point uframe utool">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🟡</span><span>FANUC – TCP & Frame</span></div>
-            <div class="card-tag">Robotica</div>
-        </div>
-        <div class="card-desc">Calibrazione UTOOL, UFRAME e TCP 3/6 punti.</div>
-        <div class="card-footer"><span class="badge">FANUC</span></div>
+<div class="card" data-id="fanuc_tcp" data-group="robot" data-category="fanuc" data-label="fanuc tcp calibration tool frame 3 point 6 point uframe utool">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🟡</span><span>FANUC – TCP & Frame</span></div>
+        <div class="card-tag">Robotica</div>
     </div>
+    <div class="card-desc">Calibrazione UTOOL, UFRAME e TCP 3/6 punti.</div>
+    <div class="card-footer"><span class="badge">FANUC</span></div>
+</div>
 
-    <div class="card" data-id="fanuc_vision" data-group="robot" data-category="fanuc" data-label="fanuc vision calibration 2d 3d iRVision setup grid">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🟠</span><span>FANUC – Vision</span></div>
-            <div class="card-tag">Visione</div>
-        </div>
-        <div class="card-desc">Setup iRVision 2D/3D e grid calibration.</div>
-        <div class="card-footer"><span class="badge">iRVision</span></div>
+<div class="card" data-id="fanuc_vision" data-group="robot" data-category="fanuc" data-label="fanuc vision calibration 2d 3d iRVision setup grid">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🟡</span><span>FANUC – Vision</span></div>
+        <div class="card-tag">Visione</div>
     </div>
+    <div class="card-desc">Setup iRVision 2D/3D e grid calibration.</div>
+    <div class="card-footer"><span class="badge">iRVision</span></div>
+</div>
 
 
-    <div class="card" data-id="kuka_setup" data-group="robot" data-category="kuka" data-label="kuka messa in funzione calibrazione tool laser basi sidewall sottosquadri">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🔧</span><span>KUKA – Setup & Tool Laser</span></div>
-            <div class="card-tag">Robotica</div>
-        </div>
-        <div class="card-desc">Messa in funzione, mastering, tool laser e basi.</div>
-        <div class="card-footer"><span class="badge">KUKA</span></div>
+<div class="card" data-id="kuka_mykuka" data-group="robot" data-category="kuka" data-label="kuka mykuka registrazione upload file krcdiag support case">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🟠</span><span>KUKA – my.KUKA & Upload File</span></div>
+        <div class="card-tag">Robotica</div>
     </div>
+    <div class="card-desc">Registrazione, creazione KRCDiag e caricamento file su my.KUKA.</div>
+    <div class="card-footer"><span class="badge">KUKA</span></div>
+</div>
 
+<div class="card" data-id="kuka_setup" data-group="robot" data-category="kuka" data-label="kuka messa in funzione calibrazione tool laser basi sidewall sottosquadri">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🔧</span><span>KUKA – Setup & Tool Laser</span></div>
+        <div class="card-tag">Robotica</div>
+    </div>
+    <div class="card-desc">Messa in funzione, mastering, tool laser e basi.</div>
+    <div class="card-footer"><span class="badge">KUKA</span></div>
+</div>
+
+<div class="card" data-id="kuka_laser" data-group="robot" data-category="kuka" data-label="kuka laser tool correction calibrazione puntatore allineamento base0 tool0">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🔴</span><span>KUKA – Correzione Tool Laser</span></div>
+        <div class="card-tag">Robotica</div>
+    </div>
+    <div class="card-desc">Procedura TOOL_PREPARE per allineamento laser.</div>
+    <div class="card-footer"><span class="badge">KRL</span></div>
+</div>
 
 <div class="card" data-id="kuka_download" data-group="robot" data-category="kuka" data-label="kuka download tool_prepare src dat file laser manutenzione">
     <div class="card-header">
@@ -507,186 +568,203 @@ body[data-theme="light"] {
     <div class="card-footer"><span class="badge">KRL</span></div>
 </div>
 
-    <div class="card" data-id="kuka_laser" data-group="robot" data-category="kuka" data-label="kuka laser tool correction calibrazione puntatore allineamento base0 tool0">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🔴</span><span>KUKA – Correzione Tool Laser</span></div>
-            <div class="card-tag">Robotica</div>
-        </div>
-        <div class="card-desc">Procedura TOOL_PREPARE per allineamento laser.</div>
-        <div class="card-footer"><span class="badge">KRL</span></div>
-    </div>
-
-
-	<div class="card" data-id="kuka_mykuka" data-group="robot" data-category="kuka" data-label="kuka mykuka registrazione upload file krcdiag support case">
+<div class="card" data-id="abb_tcp" data-group="robot" data-category="abb" data-label="abb tcp wizard workobject calibration 3 point 6 point">
     <div class="card-header">
-        <div class="card-title"><span class="icon">🟠</span><span>KUKA – my.KUKA & Upload File</span></div>
+        <div class="card-title"><span class="icon">🔵</span><span>ABB – TCP & WorkObject</span></div>
         <div class="card-tag">Robotica</div>
     </div>
-    <div class="card-desc">Registrazione, creazione KRCDiag e caricamento file su my.KUKA.</div>
-    <div class="card-footer"><span class="badge">KUKA</span></div>
-	</div>
+    <div class="card-desc">Wizard TCP e WorkObject.</div>
+    <div class="card-footer"><span class="badge">ABB</span></div>
+</div>
 
-    <div class="card" data-id="abb_tcp" data-group="robot" data-category="abb" data-label="abb tcp wizard workobject calibration 3 point 6 point">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🔵</span><span>ABB – TCP & WorkObject</span></div>
-            <div class="card-tag">Robotica</div>
-        </div>
-        <div class="card-desc">Wizard TCP e WorkObject.</div>
-        <div class="card-footer"><span class="badge">ABB</span></div>
+<div class="card" data-id="yaskawa_tcp" data-group="robot" data-category="yaskawa" data-label="yaskawa motoman tcp calibration tool data set xyz orientation">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">⚪</span><span>Yaskawa – Tool Data</span></div>
+        <div class="card-tag">Robotica</div>
     </div>
+    <div class="card-desc">Calibrazione tool tramite Tool Data Set.</div>
+    <div class="card-footer"><span class="badge">Yaskawa</span></div>
+</div>
 
-    <div class="card" data-id="yaskawa_tcp" data-group="robot" data-category="yaskawa" data-label="yaskawa motoman tcp calibration tool data set xyz orientation">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">⚪</span><span>Yaskawa – Tool Data</span></div>
-            <div class="card-tag">Robotica</div>
-        </div>
-        <div class="card-desc">Calibrazione tool tramite Tool Data Set.</div>
-        <div class="card-footer"><span class="badge">Yaskawa</span></div>
+<div class="card" data-id="comau_tcp" data-group="robot" data-category="comau" data-label="comau tcp wizard calibration">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🟤</span><span>Comau – TCP Wizard</span></div>
+        <div class="card-tag">Robotica</div>
     </div>
+    <div class="card-desc">Wizard TCP Comau.</div>
+    <div class="card-footer"><span class="badge">Comau</span></div>
+</div>
 
-    <div class="card" data-id="comau_tcp" data-group="robot" data-category="comau" data-label="comau tcp wizard calibration">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🟤</span><span>Comau – TCP Wizard</span></div>
-            <div class="card-tag">Robotica</div>
-        </div>
-        <div class="card-desc">Wizard TCP Comau.</div>
-        <div class="card-footer"><span class="badge">Comau</span></div>
+<div class="card" data-id="ur_tcp" data-group="robot" data-label="universal robots tcp wizard base wizard calibration">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🟢</span><span>UR – TCP & Base Wizard</span></div>
+        <div class="card-tag">Robotica</div>
     </div>
+    <div class="card-desc">Wizard TCP/Base UR.</div>
+    <div class="card-footer"><span class="badge">UR</span></div>
+</div>
 
-  	<div class="card" data-id="ur_tcp" data-group="robot" data-label="universal robots tcp wizard base wizard calibration">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🟢</span><span>UR – TCP & Base Wizard</span></div>
-            <div class="card-tag">Robotica</div>
 
-        </div>
-        <div class="card-desc">Wizard TCP/Base UR.</div>
-        <div class="card-footer"><span class="badge">UR</span></div>
-    </div>
 
     <!-- NETWORKING -->
-    <div class="card" data-id="net" data-group="net" data-label="Networking vpn teltonika ubiquiti routing">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🌐</span><span>Networking – Generale</span></div>
-            <div class="card-tag">Rete</div>
-        </div>
-        <div class="card-desc">Comandi rete, routing e gestione infrastruttura.</div>
-        <div class="card-footer"><span class="badge">IP / ROUTE</span></div>
+<div class="card" data-id="net" data-group="net" data-label="Networking vpn teltonika ubiquiti routing">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🌐</span><span>Networking – Generale</span></div>
+        <div class="card-tag">Rete</div>
     </div>
+    <div class="card-desc">Comandi rete, routing e gestione infrastruttura.</div>
+    <div class="card-footer"><span class="badge">IP / ROUTE</span></div>
+</div>
 
-    <div class="card" data-id="telto" data-group="net" data-label="Teltonika configurazione router setup wizard apn sim lan wifi rms backup">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">📡</span><span>Router Teltonika</span></div>
-            <div class="card-tag">Networking</div>
-        </div>
-        <div class="card-desc">Setup wizard, APN, LAN, Wi‑Fi, RMS, backup.</div>
-        <div class="card-footer"><span class="badge">RUT</span></div>
+<div class="card" data-id="telto" data-group="net" data-label="Teltonika configurazione router setup wizard apn sim lan wifi rms backup">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">📡</span><span>Router Teltonika</span></div>
+        <div class="card-tag">Networking</div>
     </div>
+    <div class="card-desc">Setup wizard, APN, LAN, Wi‑Fi, RMS, backup.</div>
+    <div class="card-footer"><span class="badge">RUT</span></div>
+</div>
 
-    <div class="card" data-id="fieldbus" data-group="net" data-label="profinet ethercat ethernetip canopen modbus tcp">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">📡</span><span>Fieldbus Industriali</span></div>
-            <div class="card-tag">Rete</div>
-        </div>
-        <div class="card-desc">Profinet, EtherCAT, Ethernet/IP, CANopen, Modbus TCP.</div>
-        <div class="card-footer"><span class="badge">Fieldbus</span></div>
+<div class="card" data-id="fieldbus" data-group="net" data-label="profinet ethercat ethernetip canopen modbus tcp">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">📡</span><span>Fieldbus Industriali</span></div>
+        <div class="card-tag">Rete</div>
     </div>
+    <div class="card-desc">Profinet, EtherCAT, Ethernet/IP, CANopen, Modbus TCP.</div>
+    <div class="card-footer"><span class="badge">Fieldbus</span></div>
+</div>
+
+
 
     <!-- PLC / CNC / BACKUP -->
-    <div class="card" data-id="plc" data-group="plc" data-label="plc siemens allen bradley omron beckhoff profinet ethernetip">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🧠</span><span>PLC – Siemens / AB / Omron / Beckhoff</span></div>
-            <div class="card-tag">Automazione</div>
-        </div>
-        <div class="card-desc">Diagnostica, indirizzi, backup.</div>
-        <div class="card-footer"><span class="badge">PLC</span></div>
+    
+<div class="card" data-id="plc" data-group="plc" data-label="plc siemens allen bradley omron beckhoff profinet ethernetip">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🧠</span><span>PLC – Siemens / AB / Omron / Beckhoff</span></div>
+        <div class="card-tag">Automazione</div>
     </div>
+    <div class="card-desc">Diagnostica, indirizzi, backup.</div>
+    <div class="card-footer"><span class="badge">PLC</span></div>
+</div>
 
-    <div class="card" data-id="cnc" data-group="plc" data-label="cnc fanuc siemens 840d parametri backup zero pezzo">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">⚙️</span><span>CNC – Fanuc / Siemens 840D</span></div>
-            <div class="card-tag">Macchine utensili</div>
-        </div>
-        <div class="card-desc">Zero pezzo, parametri, backup.</div>
-        <div class="card-footer"><span class="badge">CNC</span></div>
+<div class="card" data-id="cnc" data-group="plc" data-label="cnc fanuc siemens 840d parametri backup zero pezzo">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">⚙️</span><span>CNC – Fanuc / Siemens 840D</span></div>
+        <div class="card-tag">Macchine utensili</div>
     </div>
+    <div class="card-desc">Zero pezzo, parametri, backup.</div>
+    <div class="card-footer"><span class="badge">CNC</span></div>
+</div>
 
-    <div class="card" data-id="backup_suite" data-group="plc" data-label="backup robot plc router teltonika nas script automatici">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">💾</span><span>Backup Suite</span></div>
-            <div class="card-tag">Manutenzione</div>
-        </div>
-        <div class="card-desc">Strategia backup robot/PLC/router su NAS.</div>
-        <div class="card-footer"><span class="badge">Backup</span></div>
+<div class="card" data-id="backup_suite" data-group="plc" data-label="backup robot plc router teltonika nas script automatici">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">💾</span><span>Backup Suite</span></div>
+        <div class="card-tag">Manutenzione</div>
     </div>
+    <div class="card-desc">Strategia backup robot/PLC/router su NAS.</div>
+    <div class="card-footer"><span class="badge">Backup</span></div>
+</div>
+
+
 
     <!-- WINDOWS / SCRIPT / PRODUTTIVITÀ -->
-    <div class="card" data-id="win" data-group="sys" data-label="Windows scorciatoie sistema diagnostica">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🖥️</span><span>Windows – Scorciatoie</span></div>
-            <div class="card-tag">Sistema</div>
-        </div>
-        <div class="card-desc">Scorciatoie critiche e strumenti nativi.</div>
-        <div class="card-footer"><span class="badge">WIN / CTRL</span></div>
+    
+<div class="card" data-id="win" data-group="sys" data-label="Windows scorciatoie sistema diagnostica">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🖥️</span><span>Windows – Scorciatoie</span></div>
+        <div class="card-tag">Sistema</div>
     </div>
+    <div class="card-desc">Scorciatoie critiche e strumenti nativi.</div>
+    <div class="card-footer"><span class="badge">WIN / CTRL</span></div>
+</div>
 
-    <div class="card" data-id="diag" data-group="sys" data-label="Diagnostica PC sfc dism chkdsk netstat ping">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🩺</span><span>Diagnostica PC</span></div>
-            <div class="card-tag">Sistema</div>
-        </div>
-        <div class="card-desc">SFC, DISM, CHKDSK, rete.</div>
-        <div class="card-footer"><span class="badge">Health</span></div>
+<div class="card" data-id="diag" data-group="sys" data-label="Diagnostica PC sfc dism chkdsk netstat ping">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🩺</span><span>Diagnostica PC</span></div>
+        <div class="card-tag">Sistema</div>
     </div>
+    <div class="card-desc">SFC, DISM, CHKDSK, rete.</div>
+    <div class="card-footer"><span class="badge">Health</span></div>
+</div>
 
-    <div class="card" data-id="batch" data-group="sys" data-label="Batch scripting menu log beep popup cartelle timestamp">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🛠️</span><span>Batch Toolbox</span></div>
-            <div class="card-tag">Script</div>
-        </div>
-        <div class="card-desc">Menu, log, popup, beep, cartelle timestamp.</div>
-        <div class="card-footer"><span class="badge">.BAT</span></div>
+<div class="card" data-id="batch" data-group="sys" data-label="Batch scripting menu log beep popup cartelle timestamp">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🛠️</span><span>Batch Toolbox</span></div>
+        <div class="card-tag">Script</div>
     </div>
+    <div class="card-desc">Menu, log, popup, beep, cartelle timestamp.</div>
+    <div class="card-footer"><span class="badge">.BAT</span></div>
+</div>
 
-    <div class="card" data-id="ps" data-group="sys" data-label="PowerShell toolbox rete processi servizi wmi diagnostica">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">⚡</span><span>PowerShell Toolbox</span></div>
-            <div class="card-tag">Script</div>
-        </div>
-        <div class="card-desc">Rete, sistema, file, WMI.</div>
-        <div class="card-footer"><sp    const payloadFilters = document.getElementById("payloadFilters");
-an class="badge">PS</span></div>
+<div class="card" data-id="ps" data-group="sys" data-label="PowerShell toolbox rete processi servizi wmi diagnostica">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">⚡</span><span>PowerShell Toolbox</span></div>
+        <div class="card-tag">Script</div>
     </div>
+    <div class="card-desc">Rete, sistema, file, WMI.</div>
+    <div class="card-footer"><span class="badge">PS</span></div>
+</div>
 
-    <div class="card" data-id="prod" data-group="sys" data-label="Office browser produttività scorciatoie edge chrome word excel">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🧩</span><span>Produttività – Office & Browser</span></div>
-            <div class="card-tag">Workflow</div>
-        </div>
-        <div class="card-desc">Scorciatoie per documenti e web.</div>
-        <div class="card-footer"><span class="badge">Office</span></div>
+<div class="card" data-id="prod" data-group="sys" data-label="Office browser produttività scorciatoie edge chrome word excel">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🧩</span><span>Produttività – Office & Browser</span></div>
+        <div class="card-tag">Workflow</div>
     </div>
+    <div class="card-desc">Scorciatoie per documenti e web.</div>
+    <div class="card-footer"><span class="badge">Office</span></div>
+</div>
+
+
 
     <!-- SAFETY / COLLAUDO -->
-    <div class="card" data-id="safety" data-group="safety" data-label="safety pilz sick abb jokab plc sicurezza laser barriere">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🛡️</span><span>Safety – Impianto</span></div>
-            <div class="card-tag">Sicurezza</div>
-        </div>
-        <div class="card-desc">Barriere, PLC safety, test periodici.</div>
-        <div class="card-footer"><span class="badge">Safety</span></div>
-    </div>
+   
 
-    <div class="card" data-id="klrs_test" data-group="safety" data-label="collaudo impianto laser klrs test linee parametri">
-        <div class="card-header">
-            <div class="card-title"><span class="icon">🔬</span><span>Collaudo KLRS</span></div>
-            <div class="card-tag">Collaudo</div>
-        </div>
-        <div class="card-desc">Check list collaudo sistema laser KLRS.</div>
-        <div class="card-footer"><span class="badge">KLRS</span></div>
+<div class="card" data-id="klrs_test" data-group="safety" data-label="collaudo impianto laser klrs test linee parametri">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🔬</span><span>Collaudo KLRS</span></div>
+        <div class="card-tag">Collaudo</div>
     </div>
+    <div class="card-desc">Check list collaudo sistema laser KLRS.</div>
+    <div class="card-footer"><span class="badge">KLRS</span></div>
+</div>
+ 
+<div class="card" data-id="safety" data-group="safety" data-label="safety pilz sick abb jokab plc sicurezza laser barriere">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">🛡️</span><span>Safety – Impianto</span></div>
+        <div class="card-tag">Sicurezza</div>
+    </div>
+    <div class="card-desc">Barriere, PLC safety, test periodici.</div>
+    <div class="card-footer"><span class="badge">Safety</span></div>
+</div>
 
 </div>
+		</div>
+		
+		
+<!-- 🔐 SCHERMATA PASSWORD -->
+<div id="passwordScreen" style="
+    position: fixed;
+    inset: 0;
+    background: #111;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 99999;
+">
+    <h2>Inserisci la password</h2>
+    <input id="passwordInput" type="password" placeholder="Password" 
+        style="padding: 12px; font-size: 18px; border-radius: 8px; width: 260px;">
+    <button id="passwordBtn" class="btn" style="padding: 10px 20px; font-size: 18px;">
+        Accedi
+    </button>
+    <div id="passwordError" style="color: #ff4444; display:none;">
+        Password errata
     </div>
+</div>
+
 
     <section class="panel" id="detailPanel" style="display:none;">
         <div class="panel-header">
@@ -701,8 +779,13 @@ an class="badge">PS</span></div>
         <div class="panel-content">
     <pre id="panelContent"></pre>
 
+    <button id="backButton" class="btn" style="margin-top:12px; display:none;">
+        ⬅️ Indietro
+    </button>
+    
     <!-- Pulsanti download file KUKA -->
     <div id="downloadArea" style="margin-top:12px; display:none;">
+    <button id="backButton" class="btn" style="margin-top:12px; display:none;">⬅️ Indietro</button>
     <a href="TOOL_PREPARE.src" download class="btn">📥 Scarica TOOL_PREPARE.src</a>
     <a href="TOOL_PREPARE.dat" download class="btn">📥 Scarica TOOL_PREPARE.dat</a>
     <a href="TOOL_PREPARE.zip" download class="btn">🗜️ Scarica ZIP (src + dat)</a>
@@ -717,13 +800,131 @@ an class="badge">PS</span></div>
     Toolbox locale — nessuna connessione esterna. Puoi modificare liberamente questo file per adattarlo ai tuoi flussi.
 </footer>
 
+
+
+
+
+
+
+
+
 <script>
 
-document.querySelector("button[data-filter='all']").addEventListener("click", () => {
-    window.location.reload();   // torna alla schermata iniziale identica all'apertura
+// ELEMENTI PRINCIPALI
+const cardGrid = document.getElementById("cardGrid");
+const detailPanel = document.getElementById("detailPanel");
+const panelTitle = document.getElementById("panelTitle");
+const panelSub = document.getElementById("panelSub");
+const panelTag = document.getElementById("panelTag");
+const panelContent = document.getElementById("panelContent");
+const searchInput = document.getElementById("search");
+const themeToggle = document.getElementById("themeToggle");
+
+const robotBrandMenu = document.getElementById("robotBrandMenu");
+const robotModelMenu = document.getElementById("robotModelMenu");
+const robotCatalog = document.getElementById("robotCatalog");
+
+let previousVisibleCards = [];
+let previousRobotMenus = {};
+let currentBrand = null;
+
+// FUNZIONE: NASCONDE TUTTO IL MONDO ROBOTICO
+function hideRobotSection() {
+    robotBrandMenu.style.display = "none";
+    robotModelMenu.style.display = "none";
+    robotCatalog.style.display = "none";
+    detailPanel.style.display = "none";
+}
+
+// CLICK SU CARD
+cardGrid.addEventListener("click", e => {
+    const card = e.target.closest(".card");
+    if (!card) return;
+
+    const id = card.dataset.id;
+    const item = data[id];
+
+    // 🔹 Memorizza quali card erano visibili
+    previousVisibleCards = [];
+    document.querySelectorAll(".card").forEach(c => {
+        if (c.style.display !== "none") previousVisibleCards.push(c);
+        c.style.display = "none";   // nasconde tutto
+    });
+
+    // 🔹 Memorizza stato dei menu robot
+    previousRobotMenus = {
+        brand: robotBrandMenu.style.display,
+        model: robotModelMenu.style.display,
+        catalog: robotCatalog.style.display
+    };
+
+    // 🔹 Nasconde menu robot
+    robotBrandMenu.style.display = "none";
+    robotModelMenu.style.display = "none";
+    robotCatalog.style.display = "none";
+
+    // 🔹 Mostra pannello dettagli
+    panelTitle.textContent = item.title;
+    panelContent.textContent = item.content;
+    detailPanel.style.display = "block";
+
+    // 🔹 Mostra pulsante Indietro
+    document.getElementById("backButton").style.display = "block";
+
+    // 🔹 Gestione download KUKA
+    const downloadArea = document.getElementById("downloadArea");
+    downloadArea.style.display = (id === "kuka_download") ? "flex" : "none";
 });
 
 
+// RICERCA
+searchInput.addEventListener("input", () => {
+    const term = searchInput.value.toLowerCase();
+    cardGrid.querySelectorAll(".card").forEach(card => {
+        const label = (card.dataset.label || "").toLowerCase();
+        const match = !term || label.includes(term);
+        card.style.opacity = match ? "1" : "0.25";
+        card.style.pointerEvents = match ? "auto" : "none";
+    });
+});
+
+// TEMA
+themeToggle.addEventListener("click", () => {
+    const body = document.body;
+    const next = body.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    body.setAttribute("data-theme", next);
+});
+
+// FILTRO "TUTTO"
+document.querySelector("button[data-filter='all']").addEventListener("click", () => {
+    document.querySelectorAll(".card").forEach(card => card.style.display = "block");
+    hideRobotSection();
+});
+
+// FILTRO CATEGORIE PRINCIPALI
+document.querySelectorAll("button[data-filter]").forEach(btn => {
+    btn.addEventListener("click", () => {
+
+        const filter = btn.dataset.filter;
+
+        document.querySelectorAll(".card").forEach(card => {
+            const group = card.dataset.group;
+            card.style.display = (filter === "all" || group === filter) ? "block" : "none";
+        });
+
+        if (filter === "robot") {
+            robotBrandMenu.style.display = "flex";
+            robotModelMenu.style.display = "none";
+            robotCatalog.style.display = "none";
+        } else {
+            hideRobotSection();
+        }
+
+        detailPanel.style.display = "none";
+    });
+});
+
+// DATABASE MODELLI ROBOT
 const robotCatalogData = {
     fanuc: [
         { model: "M-10iD/12", payload: "12 kg", reach: "1441 mm", img: "fanuc_m10id12.png" },
@@ -742,229 +943,75 @@ const robotCatalogData = {
 };
 
 
-document.getElementById("robotModelMenu").addEventListener("click", e => {
-    const btn = e.target.closest("button[data-model]");
-    if (!btn) return;
-
-    const model = btn.dataset.model;
-
-    // Mostra tutte le card del brand selezionato
-    document.querySelectorAll(".card").forEach(card => {
-        const cat = card.dataset.category;
-        card.style.display = (cat === "fanuc" || cat === "kuka" || cat === "abb" || cat === "yaskawa" || cat === "comau" || cat === "ur")
-            ? "block"
-            : "none";
-    });
-
-    // Mostra pannello con info modello
-    panelTitle.textContent = "Modello: " + model;
-    panelContent.textContent = "Informazioni tecniche disponibili:\n\n• TCP & Frame\n• Quick Mastering\n• Segnali di sistema\n• Safety (DCS)\n• Ethernet/IP Safety\n• ProfiNet\n• UOP\n• PMC\n• Vision\n• Programmi scaricabili\n• Manuali\n\nSeleziona una card per aprire la sezione.";
-    detailPanel.style.display = "block";
-});
 
 
 
+// LISTA MODELLI
 const robotModels = {
-    fanuc: [
-        "M-10iD/12",
-        "M-20iD/25",
-        "R-2000iC/210F",
-        "R-1000iA/80F",
-        "CRX-10iA",
-        "CR-35iA"
-    ],
-    kuka: [
-        "KR10 R1420",
-        "KR10 R1440-2",
-        "KR16",
-        "KR60",
-        "KR120",
-        "KR240",
-        "KR360"
-    ],
-    abb: [
-        "IRB1200",
-        "IRB1600",
-        "IRB2600",
-        "IRB6700"
-    ],
-    yaskawa: [
-        "GP7",
-        "GP12",
-        "GP25",
-        "GP50"
-    ],
-    comau: [
-        "Racer 5",
-        "Racer 7",
-        "Smart5 NJ110",
-        "Smart5 NJ220"
-    ],
-    ur: [
-        "UR3",
-        "UR5",
-        "UR10",
-        "UR20"
-    ]
+    fanuc: ["M-10iD/12","M-20iD/25","R-2000iC/210F","R-1000iA/80F","CRX-10iA","CR-35iA"],
+    kuka: ["KR10 R1420","KR10 R1440-2","KR16","KR60","KR120","KR240","KR360"],
+    abb: ["IRB1200","IRB1600","IRB2600","IRB6700"],
+    yaskawa: ["GP7","GP12","GP25","GP50"],
+    comau: ["Racer 5","Racer 7","Smart5 NJ110","Smart5 NJ220"],
+    ur: ["UR3","UR5","UR10","UR20"]
 };
 
+// CLICK SU MARCA ROBOT
 document.querySelectorAll("button[data-brand]").forEach(btn => {
     btn.addEventListener("click", () => {
+
         const brand = btn.dataset.brand;
-        const catalog = document.getElementById("robotCatalog");
+        currentBrand = brand;   // 🔹 memorizza il brand selezionato
 
-        catalog.innerHTML = "";
-        catalog.style.display = "grid";
-
-        robotCatalogData[brand].forEach(robot => {
-            const card = document.createElement("div");
-            card.className = "catalog-card";
-            card.innerHTML = `
-                <img src="${robot.img}" alt="${robot.model}">
-                <div class="catalog-card-title">${robot.model}</div>
-                <div class="catalog-card-specs">
-                    Payload: ${robot.payload}<br>
-                    Reach: ${robot.reach}
-                </div>
-            `;
-            card.addEventListener("click", () => {
-                panelTitle.textContent = robot.model;
-                panelContent.textContent = `
-MODELLO: ${robot.model}
-────────────────────────────
-Payload: ${robot.payload}
-Reach: ${robot.reach}
-
-Seleziona una card FANUC/KUKA/ABB per vedere:
-• Mastering
-• Safety (DCS)
-• Comunicazioni (Ethernet/IP, ProfiNet)
-• Segnali UOP
-• Vision
-• Tool & Frame
-• Manuali
-• Diagnostica
-                `;
-                detailPanel.style.display = "block";
-            });
-
-            catalog.appendChild(card);
-        });
-
-        // Filtra le card del brand
         document.querySelectorAll(".card").forEach(card => {
             card.style.display = (card.dataset.category === brand) ? "block" : "none";
         });
-    });
-});
 
-
-
-
-document.querySelectorAll("button[data-brand]").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const brand = btn.dataset.brand;
-        const modelMenu = document.getElementById("robotModelMenu");
-
-        modelMenu.innerHTML = ""; // pulizia
-
+        robotModelMenu.innerHTML = "";
         robotModels[brand].forEach(model => {
             const b = document.createElement("button");
             b.className = "btn";
             b.textContent = model;
             b.dataset.model = model;
-            modelMenu.appendChild(b);
+            robotModelMenu.appendChild(b);
         });
 
-        modelMenu.style.display = "flex";
+        robotModelMenu.style.display = "flex";
+        robotCatalog.style.display = "none";
+        detailPanel.style.display = "none";
     });
 });
 
+// CLICK SU MODELLO ROBOT
+robotModelMenu.addEventListener("click", e => {
+    const btn = e.target.closest("button[data-model]");
+    if (!btn) return;
 
-document.querySelector("button[data-filter='robot']").addEventListener("click", () => {
+    const model = btn.dataset.model;
+
+    // 🔹 mostra SOLO le card del brand corrente
     document.querySelectorAll(".card").forEach(card => {
-        const group = card.dataset.group || "";
-        card.style.display = (group === "robot") ? "block" : "none";
+        const category = card.dataset.category;
+        card.style.display = (category === currentBrand) ? "block" : "none";
     });
 
-    // Chiudi pannello dettagli
-    detailPanel.style.display = "none";
-});
+    panelTitle.textContent = "Modello: " + model;
+    panelContent.textContent =
+        "Informazioni tecniche disponibili:\n\n" +
+        "• TCP & Frame\n" +
+        "• Quick Mastering\n" +
+        "• Segnali di sistema\n" +
+        "• Safety (DCS)\n" +
+        "• Ethernet/IP Safety\n" +
+        "• ProfiNet\n" +
+        "• UOP\n" +
+        "• PMC\n" +
+        "• Vision\n" +
+        "• Programmi scaricabili\n" +
+        "• Manuali\n\n" +
+        "Seleziona una card per aprire la sezione.";
 
-
-document.querySelector("button[data-filter='robot']").addEventListener("click", () => {
-    document.getElementById("robotBrandMenu").style.display = "flex";
-    document.getElementById("robotModelMenu").style.display = "none";
-});
-
-document.querySelectorAll("button[data-cat]").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const cat = btn.dataset.cat;
-
-        document.querySelectorAll(".card").forEach(card => {
-            const category = card.dataset.category || "";
-
-            if (cat === "all") {
-                card.style.display = "block";
-            } else {
-                card.style.display = (category === cat) ? "block" : "none";
-            }
-        });
-
-        // Chiudi pannello dettagli
-        detailPanel.style.display = "none";
-    });
-});
-
-document.querySelectorAll("button[data-cat]").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const cat = btn.dataset.cat;
-        document.querySelectorAll(".card").forEach(card => {
-            const c = card.dataset.category || "none";
-            card.style.display = (cat === "all" || c === cat) ? "block" : "none";
-        });
-    });
-});
-
-document.querySelectorAll("button[data-brand]").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const brand = btn.dataset.brand;
-
-        document.querySelectorAll(".card").forEach(card => {
-            const category = card.dataset.category || "";
-            card.style.display = (category === brand) ? "block" : "none";
-        });
-
-        // Mostra menu modelli
-        document.getElementById("robotModelMenu").style.display = "flex";
-
-        // Chiudi pannello dettagli
-        detailPanel.style.display = "none";
-    });
-});
-
-document.querySelectorAll("button[data-cat]").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const cat = btn.dataset.cat;
-        document.querySelectorAll(".card").forEach(card => {
-            const c = card.dataset.category || "none";
-            card.style.display = (cat === "all" || c === cat) ? "block" : "none";
-        });
-    });
-});
-
-
-const filterButtons = document.querySelectorAll("button[data-filter]");
-
-filterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        const group = btn.getAttribute("data-filter");
-        const cards = cardGrid.querySelectorAll(".card");
-        cards.forEach(card => {
-            const cg = card.dataset.group || "all";
-            card.style.display = (group === "all" || cg === group) ? "block" : "none";
-        });
-    });
+    detailPanel.style.display = "block";
 });
 
 
@@ -1327,7 +1374,7 @@ NOTE
 `
 },
 
-fanuc_eipsafety: {
+fanuc_cipsafety: {
     title: "FANUC – Ethernet/IP Safety (Slave)",
     sub: "Configurazione CIP Safety, DCS e mapping I/O sicuri.",
     tag: "FANUC",
@@ -1372,207 +1419,6 @@ MAPPING I/O SICURI (DCS Safe I/O Connect)
 ────────────────────────
 CSI = ingressi sicuri (PLC → robot)  
 CSO = uscite sicure (robot → PLC)
-
-Esempi:
-• CSI1 → SSO2 (Fence)
-• CSI2 → SSO3 (Emergency)
-• SSI5 → CSO1 (Deadman)
-• CPC1 → CSO2 (Cartesian Position Check)
-
-Ogni modifica richiede:
-• APPLY
-• Riavvio controllore
-
-────────────────────────
-MANUALI DI RIFERIMENTO
-────────────────────────
-• R-30iB Plus EIP Operator Manual  
-• R-30iB Plus DCS Manual  
-• File EDS: fanucrobot_eip_safety_v900.eds
-`
-},
-
-
-
-fanuc_quickmaster: {
-    title: "FANUC – Quick Mastering",
-    sub: "Procedura di recupero mastering tramite quick master.",
-    tag: "FANUC",
-    content: `
-QUICK MASTERING – PANORAMICA
-────────────────────────────
-Usato per riallineare gli zero dei giunti quando:
-• Il robot è vicino ai riferimenti meccanici (0° marks)
-• Il quick master reference è stato registrato in precedenza
-• Tutti gli assi sono entro ±1 giro motore dal riferimento
-
-Richiede:
-• Modalità T1
-• Teach pendant ON
-• Nessun servo fault attivo
-
-────────────────────────────
-ABILITARE IL MASTERING
-────────────────────────────
-MENU → 0 NEXT → 6 SYSTEM → Variables
-• Cercare: $MASTER_ENB
-• Impostare a TRUE
-
-────────────────────────────
-PREPARAZIONE
-────────────────────────────
-• Joggare ogni asse fino ad allineare le tacche 0° meccaniche
-• Eliminare eventuali fault servo
-
-────────────────────────────
-RESET VALORI DI RIFERIMENTO
-────────────────────────────
-SYSTEM → Variables → $DMR_GRP → DETAIL
-• Cercare: $REF_POS
-• Impostare linee 1–9 a 0
-
-SYSTEM → Variables → $MASTER_COUN → DETAIL
-• Annotare valori asse 1–6
-
-SYSTEM → Variables → $REF_COUNT → DETAIL
-• Copiare i valori annotati in $MASTER_COUN
-
-Impostare:
-• $MASTER_DONE → TRUE
-• $REF_DONE → TRUE
-
-────────────────────────────
-ESEGUIRE QUICK MASTER
-────────────────────────────
-MENU → 0 NEXT → 6 SYSTEM → Master/Cal
-• Selezionare QUICK MASTER → ENTER → YES
-• Selezionare CALIBRATE → ENTER → YES
-• DONE
-
-────────────────────────────
-SE DCS È ATTIVO
-────────────────────────────
-SYSTEM → DCS → Mastering Parameters
-• APPLY
-• Inserire codice mastering
-• Cycle Power
-
-────────────────────────────
-VERIFICA CALIBRAZIONE
-────────────────────────────
-SELECT → Program ZERO
-SHIFT+COORD → TOOL=1 → USER=0
-SHIFT+FWD → portare robot in posizione ZERO
-
-Verificare:
-• Tacche 0° allineate
-• POSN → JOINT → tutti gli assi = 0°
-`
-},
-
-fanuc_signals: {
-    title: "FANUC – Segnali di Sistema (UI/UO)",
-    sub: "Descrizione completa dei segnali di controllo FANUC.",
-    tag: "FANUC",
-    content: `
-SEGNALI DI INGRESSO (UI)
-────────────────────────
-UI[1] *IMSTP – Arresto immediato
-• Deve essere ON
-• OFF → servo power OFF + stop immediato
-
-UI[2] *HOLD – Pausa programma
-• Deve essere ON
-• OFF → pausa con decelerazione
-
-UI[3] *SFSPD – Velocità di sicurezza
-• Deve essere ON
-• OFF → pausa + override velocità sicura
-
-UI[4] CSTOPI – Stop ciclo
-• Termina programma
-• Configurabile: abort immediato o a fine ciclo
-
-UI[5] RESET – Reset allarmi
-• Ripristina servo power
-
-UI[8] ENBL – Abilitazione movimento
-• Deve essere ON
-
-UI[9–16] RSR1–RSR8 – Richiesta servizi
-• Avvio automatico programmi RSR
-
-UI[6] START – Avvio esterno
-• Continua o avvia programma (configurabile)
-
-────────────────────────
-SEGNALI DI USCITA (UO)
-────────────────────────
-UO[1] CMDENBL – Comandi abilitati  
-UO[2] SYSRDY – Sistema pronto  
-UO[3] PROGRUN – Programma in esecuzione  
-UO[4] PAUSED – Programma in pausa  
-UO[5] HELD – Stato HOLD  
-UO[6] FAULT – Allarme presente  
-UO[7] ATPERCH – Robot in posizione di riferimento  
-UO[8] TPENBL – Teach pendant ON  
-UO[9] BATALM – Batteria encoder bassa  
-UO[10] BUSY – Robot occupato  
-UO[11–18] ACK1–ACK8 – Eco segnali RSR
-
-────────────────────────
-NOTE
-────────────────────────
-• IMSTP, HOLD, SFSPD devono essere ponticellati se non usati
-• RSR1 è usato nel tuo impianto per avviare il CELL
-`
-},
-
-fanuc_eipsafety: {
-    title: "FANUC – Ethernet/IP Safety (Slave)",
-    sub: "Configurazione DCS, CIP Safety, diagnostica e mapping I/O sicuri.",
-    tag: "FANUC",
-    content: `
-CONFIGURAZIONE IP
-────────────────────────
-MENU → 6 SETUP → HOST COMM → TCP/IP
-• Impostare IP porta CD38B (consigliata)
-• Subnet mask
-• Router (se necessario)
-
-────────────────────────
-DCS – CIP SAFETY
-────────────────────────
-MENU → 0 NEXT → 6 SYSTEM → DCS → CIP Safety
-
-Parametri:
-• Enable/Bypass → ENABLE
-• Input size (byte) → es. 2 / 4
-• Output size (byte) → es. 2 / 4
-• Signature Date/Time → ACTUAL
-
-Dopo modifiche:
-• APPLY
-• Inserire codice mastering DCS
-• Cycle Power
-
-────────────────────────
-DIAGNOSTICA SAFETY
-────────────────────────
-MENU → I/O → Ethernet/IP → F3 Safety
-
-Verificare:
-• Safety I/F Status → RUNNING
-• CIP Safety Operation → ENABLE
-• Input/Output Size coerenti con PLC
-• SNN (Safety Network Number)
-• TX/RX Count incrementano
-
-────────────────────────
-MAPPING I/O SICURI (DCS Safe I/O Connect)
-────────────────────────
-CSI = ingressi sicuri (dal PLC → robot)
-CSO = uscite sicure (dal robot → PLC)
 
 Esempi:
 • CSI1 → SSO2 (Fence)
@@ -2832,55 +2678,47 @@ WIN + 1 / 2 / 3…
     }
 };
 
-const cardGrid = document.getElementById("cardGrid");
-const detailPanel = document.getElementById("detailPanel");
-const panelTitle = document.getElementById("panelTitle");
-const panelSub = document.getElementById("panelSub");
-const panelTag = document.getElementById("panelTag");
-const panelContent = document.getElementById("panelContent");
-const searchInput = document.getElementById("search");
-const themeToggle = document.getElementById("themeToggle");
+document.getElementById("backButton").addEventListener("click", () => {
 
-cardGrid.addEventListener("click", e => {
-    const card = e.target.closest(".card");
-    if (!card) return;
+    // 🔹 Nasconde pannello dettagli
+    detailPanel.style.display = "none";
+    document.getElementById("backButton").style.display = "none";
 
-    const id = card.dataset.id;
-    const item = data[id];
+    // 🔹 Ripristina card visibili
+    document.querySelectorAll(".card").forEach(c => c.style.display = "none");
+    previousVisibleCards.forEach(c => c.style.display = "block");
 
-    panelTitle.textContent = item.title;
-    panelContent.textContent = item.content;
-    detailPanel.style.display = "block";
+    // 🔹 Ripristina stato dei menu robot
+    robotBrandMenu.style.display = previousRobotMenus.brand;
+    robotModelMenu.style.display = previousRobotMenus.model;
+    robotCatalog.style.display = previousRobotMenus.catalog;
+});
 
-    // Mostra pulsanti download SOLO per la card KUKA_DOWNLOAD
-    const downloadArea = document.getElementById("downloadArea");
-    if (id === "kuka_download") {
-        downloadArea.style.display = "flex";
-        downloadArea.style.flexDirection = "column";
-        downloadArea.style.gap = "8px";
+// 🔐 Password dinamica giornaliera: aaaammgg
+function getDailyPassword() {
+    const today = new Date();
+    const gg = String(today.getDate()).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const aaaa = today.getFullYear();
+    return `${aaaa}${mm}${gg}`;
+}
+
+const passwordScreen = document.getElementById("passwordScreen");
+const passwordInput = document.getElementById("passwordInput");
+const passwordBtn = document.getElementById("passwordBtn");
+const passwordError = document.getElementById("passwordError");
+
+passwordBtn.addEventListener("click", () => {
+    const correctPassword = getDailyPassword();
+
+    if (passwordInput.value === correctPassword) {
+        passwordScreen.style.display = "none";   // 🔓 Sblocca la pagina
     } else {
-        downloadArea.style.display = "none";
+        passwordError.style.display = "block";   // ❌ Errore
     }
 });
 
 
-searchInput.addEventListener("input", () => {
-    const term = searchInput.value.toLowerCase();
-    const cards = cardGrid.querySelectorAll(".card");
-    cards.forEach(card => {
-        const label = (card.dataset.label || "").toLowerCase();
-        const match = !term || label.includes(term);
-        card.style.opacity = match ? "1" : "0.25";
-        card.style.pointerEvents = match ? "auto" : "none";
-    });
-});
-
-themeToggle.addEventListener("click", () => {
-    const body = document.body;
-    const current = body.getAttribute("data-theme");
-    const next = current === "dark" ? "light" : "dark";
-    body.setAttribute("data-theme", next);
-});
 </script>
 
 </body>
