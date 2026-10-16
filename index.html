@@ -112,6 +112,29 @@
     opacity: 0.8;
 }
 
+.text-size-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.text-size-controls .btn {
+    padding: 6px 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.card-size-controls .btn {
+    padding: 6px 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+}
 
 #downloadArea .btn {
     color: var(--panel-text);
@@ -125,6 +148,21 @@
 }
 :root {
     --panel-text: #ffffff; /* testo bianco di default */
+}
+
+:root {
+    --card-size: 280px; /* dimensione base */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-size), 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.card {
+    transition: all 0.15s ease;
 }
 
 [data-theme="light"] {
@@ -172,6 +210,22 @@
     background-size: 1000px auto;
     background-color: #0f3d0f;
 }
+
+/* Animazione shake per password errata */
+.shake {
+    animation: shakeAnim 0.3s;
+    border: 2px solid #ff4444 !important;
+}
+
+@keyframes shakeAnim {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+
 
 body {
     font-size: 16px;
@@ -274,6 +328,10 @@ body[data-theme="light"] {
 
 .container {
     padding: 12px;
+}
+
+.card {
+    transition: all 0.15s ease;
 }
 
     .card {
@@ -409,24 +467,34 @@ body[data-theme="light"] {
     </div>
 </header>
 
-<main>
 
+
+<main>
 
 <div style="display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; margin-bottom:12px;">
     <div style="display:flex; gap:6px; flex-wrap:wrap;">
         <button class="btn" data-filter="all">Tutto</button>
         <button class="btn" data-filter="robot">Robotica</button>
-				<button class="btn" data-filter="net">Networking</button>
+        <button class="btn" data-filter="net">Networking</button>
         <button class="btn" data-filter="plc">PLC / CNC / Backup</button>
         <button class="btn" data-filter="sys">Windows / Script</button>
         <button class="btn" data-filter="safety">Safety / Collaudo</button>
     </div>
-    
-		<!-- 🔥 PULSANTE INDIETRO NELLA SCHERMATA PRINCIPALE -->
-				<button id="backButton" class="btn" style="display:none; margin-top:10px;">
-    		⬅️ Indietro
-		</button>
+
+    <!-- 🔥 PULSANTE INDIETRO NELLA SCHERMATA PRINCIPALE -->
+    <button id="backButton" class="btn" style="display:none; margin-top:10px;">
+        ⬅️ Indietro
+    </button>
+</div>
+
+<!-- 🔠 CONTROLLI DIMENSIONE CARD (punto esatto) -->
+<div class="card-size-controls" style="margin-bottom:12px; display:flex; gap:10px;">
+    <button id="cardMinus" class="btn">−</button>
+    <button id="cardPlus" class="btn">+</button>
+</div>
+
 <div class="grid" id="cardGrid">
+
 
 
 
@@ -755,7 +823,6 @@ body[data-theme="light"] {
 </div>
 
 </div>
-		</div>
 		
 		
 <!-- 🔐 SCHERMATA PASSWORD -->
@@ -783,17 +850,24 @@ body[data-theme="light"] {
 </div>
 
 
-    <section class="panel" id="detailPanel" style="display:none;">
-        <div class="panel-header">
-            <div>
-                <div class="panel-title" id="panelTitle"></div>
-                <div class="panel-sub" id="panelSub"></div>
-            </div>
-            <div class="pill-row">
-                <span class="pill" id="panelTag"></span>
-            </div>
+<section class="panel" id="detailPanel" style="display:none;">
+    <div class="panel-header">
+        <div>
+           <div class="panel-title" id="panelTitle"></div>
+           <div class="panel-sub" id="panelSub"></div>
         </div>
-        <div class="panel-content">
+        <div class="pill-row">
+           <span class="pill" id="panelTag"></span>
+        </div>
+     </div>
+        
+     <div class="text-size-controls">
+    	 <button id="textMinus" class="btn">−</button>
+    	 <button id="textPlus" class="btn">+</button>
+		 </div>
+	
+        
+    <div class="panel-content">
     <pre id="panelContent"></pre>
 
     <button id="backButton" class="btn" style="margin-top:12px; display:none;">
@@ -802,13 +876,13 @@ body[data-theme="light"] {
     
     <!-- Pulsanti download file KUKA -->
     <div id="downloadArea" style="margin-top:12px; display:none;">
-    <button id="backButton" class="btn" style="margin-top:12px; display:none;">⬅️ Indietro</button>
     <a href="TOOL_PREPARE.src" download class="btn">📥 Scarica TOOL_PREPARE.src</a>
     <a href="TOOL_PREPARE.dat" download class="btn">📥 Scarica TOOL_PREPARE.dat</a>
     <a href="TOOL_PREPARE.zip" download class="btn">🗜️ Scarica ZIP (src + dat)</a>
 </div>
 
 </div>
+		</div>
 
     </section>
 </main>
@@ -2711,6 +2785,61 @@ document.getElementById("backButton").addEventListener("click", () => {
     robotCatalog.style.display = previousRobotMenus.catalog;
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    // 🔠 Controllo dimensione testo nella scheda dettagli
+    const panelContent = document.getElementById("panelContent");
+    const textPlus = document.getElementById("textPlus");
+    const textMinus = document.getElementById("textMinus");
+
+    // Se qualcosa non esiste, non facciamo nulla (e non rompiamo il resto)
+    if (!panelContent || !textPlus || !textMinus) {
+        console.warn("Controlli testo (+/-) non inizializzati: elementi mancanti.");
+        return;
+    }
+
+    let currentSize = 18; // dimensione iniziale
+    panelContent.style.fontSize = currentSize + "px";
+
+    textPlus.addEventListener("click", () => {
+        currentSize += 2;
+        panelContent.style.fontSize = currentSize + "px";
+    });
+
+    textMinus.addEventListener("click", () => {
+        if (currentSize > 10) {
+            currentSize -= 2;
+            panelContent.style.fontSize = currentSize + "px";
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const plus = document.getElementById("cardPlus");
+    const minus = document.getElementById("cardMinus");
+
+    if (!plus || !minus) return;
+
+    let size = 280; // base
+
+    function applySize() {
+        document.documentElement.style.setProperty("--card-size", size + "px");
+    }
+
+    applySize();
+
+    plus.addEventListener("click", () => {
+        size = Math.min(size + 20, 500);
+        applySize();
+    });
+
+    minus.addEventListener("click", () => {
+        size = Math.max(size - 20, 160);
+        applySize();
+    });
+});
+
+
+
 // 🔐 Password dinamica giornaliera: aaaammgg
 function getDailyPassword() {
     const today = new Date();
@@ -2731,9 +2860,18 @@ passwordBtn.addEventListener("click", () => {
     if (passwordInput.value === correctPassword) {
         passwordScreen.style.display = "none";   // 🔓 Sblocca la pagina
     } else {
-        passwordError.style.display = "block";   // ❌ Errore
+        passwordError.style.display = "block";   // ❌ Mostra errore
+
+        // 🔥 Animazione shake
+        passwordInput.classList.add("shake");
+
+        // Rimuove l'effetto dopo 300ms
+        setTimeout(() => {
+            passwordInput.classList.remove("shake");
+        }, 300);
     }
 });
+
 
 
 </script>
