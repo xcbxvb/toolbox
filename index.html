@@ -73,6 +73,7 @@
 #panelContent {
     font-size: 18px;
     line-height: 1.6;
+    white-space: pre-wrap;
 }
 
 /* Testo più piccolo su smartphone */
@@ -218,8 +219,6 @@
     75% { transform: translateX(-5px); }
     100% { transform: translateX(0); }
 }
-
-
 
 body {
     font-size: 16px;
@@ -426,11 +425,6 @@ body[data-theme="light"] {
         .search-input { width: 60%; }
     }
     
-    #panelContent {
-    white-space: pre-wrap;
-}
-
-
 /* 🔥 Ridimensionamento reale delle card */
 .card {
     transform: scale(calc(var(--card-size) / 280));
@@ -442,13 +436,8 @@ body[data-theme="light"] {
     gap: calc(var(--card-size) / 20);
 }
 
-<style>
-#panelContent {
-    white-space: pre-wrap;
-}
 </style>
 
-</style>
 </head>
 <body data-theme="dark">
   
@@ -470,6 +459,34 @@ body[data-theme="light"] {
         Chiudi
     </button>
 </div>
+
+<div id="archivePasswordScreen" style="
+    position: fixed;
+    inset: 0;
+    background: #000;
+    color: #fff;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 999999;
+">
+    <h2>Password Archivio</h2>
+
+    <input id="archivePasswordInput" type="password" placeholder="Password archivio"
+        style="padding: 12px; font-size: 18px; border-radius: 8px; width: 260px;">
+
+    <button id="archivePasswordBtn" class="btn" style="padding: 10px 20px; font-size: 18px;">
+        Accedi
+    </button>
+
+    <div id="archivePasswordError" style="color:#ff4444; display:none;">
+        Password errata
+    </div>
+</div>
+
+
 
 
 <header>
@@ -907,7 +924,7 @@ body[data-theme="light"] {
     	<a href="TOOL_PREPARE.src" download class="btn">📥 Scarica TOOL_PREPARE.src</a>
     	<a href="TOOL_PREPARE.dat" download class="btn">📥 Scarica TOOL_PREPARE.dat</a>
     	<a href="TOOL_PREPARE.zip" download class="btn">🗜️ Scarica ZIP (src + dat)</a>
-		</div>
+	</div>
 
 </div>
 
@@ -920,11 +937,13 @@ body[data-theme="light"] {
     Toolbox locale — nessuna connessione esterna. Puoi modificare liberamente questo file per adattarlo ai tuoi flussi.
 </footer>
 
+
 <script>
-const GITHUB_TOKEN = "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";
+const GITHUB_TOKEN = "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";
 const GITHUB_USER = "xcbxvb";
 const GITHUB_REPO = "toolbox";
 </script>
+
 
 <script>
 
@@ -1135,7 +1154,7 @@ robotModelMenu.addEventListener("click", e => {
 
 const data = {
 
-fanuc_cpc: {
+    fanuc_cpc: {
     title: "FANUC – DCS Cartesian Position Check (CPC)",
     sub: "Monitoraggio posizione tool e zone di sicurezza.",
     tag: "FANUC",
@@ -1188,8 +1207,7 @@ NOTE
 • Zone multiple possono essere combinate
 `
 },
-
-fanuc_speedcheck: {
+    anuc_speedcheck: {
     title: "FANUC – DCS Speed/Zone Check",
     sub: "Limitazione velocità e controllo zone di sicurezza.",
     tag: "FANUC",
@@ -1233,8 +1251,7 @@ NOTE
 • Zone e speed check possono essere combinati
 `
 },
-
-fanuc_profinet: {
+    fanuc_profinet: {
     title: "FANUC – ProfiNet (Slave)",
     sub: "Configurazione FANUC come dispositivo Profinet.",
     tag: "FANUC",
@@ -1280,8 +1297,7 @@ NOTE
 • Per safety usare CIP Safety (Ethernet/IP)
 `
 },
-
-fanuc_uop: {
+    fanuc_uop: {
     title: "FANUC – UOP Signals",
     sub: "Segnali di controllo remoto del robot.",
     tag: "FANUC",
@@ -1319,8 +1335,7 @@ NOTE
 • RSR1 è usato nel tuo impianto per avviare il CELL
 `
 },
-
-fanuc_pmc: {
+    fanuc_pmc: {
     title: "FANUC – PMC (Ladder interno)",
     sub: "PLC interno FANUC per logiche personalizzate.",
     tag: "FANUC",
@@ -1359,12 +1374,7 @@ NOTE
 • PMC può leggere UOP e I/O standard
 `
 },
-
-
-
-
-
-fanuc_quickmaster: {
+    fanuc_quickmaster: {
     title: "FANUC – Quick Mastering",
     sub: "Procedura tecnica per riallineare gli zero dei giunti.",
     tag: "FANUC",
@@ -1434,8 +1444,7 @@ Verificare:
 • POSN → JOINT → tutti gli assi = 0°
 `
 },
-
-fanuc_signals: {
+    fanuc_signals: {
     title: "FANUC – Segnali di Sistema (UI/UO)",
     sub: "Segnali di controllo FANUC per avvio, stop, sicurezza e stato.",
     tag: "FANUC",
@@ -1491,8 +1500,7 @@ NOTE
 • RSR è usato per avvio automatico da PLC
 `
 },
-
-fanuc_cipsafety: {
+    fanuc_cipsafety: {
     title: "FANUC – Ethernet/IP Safety (Slave)",
     sub: "Configurazione CIP Safety, DCS e mapping I/O sicuri.",
     tag: "FANUC",
@@ -1556,9 +1564,7 @@ MANUALI DI RIFERIMENTO
 • File EDS: fanucrobot_eip_safety_v900.eds
 `
 },
-
-
-kuka_download: {
+    kuka_download: {
     title: "KUKA – Download TOOL_PREPARE",
     sub: "File originali del programma TOOL_PREPARE (src + dat).",
     tag: "KUKA",
@@ -1586,9 +1592,7 @@ PULSANTI DI DOWNLOAD
 ──────────────────────────
 `,
 },
-
-
-plc: {
+    plc: {
     title: "PLC – Siemens / Allen-Bradley / Omron / Beckhoff",
     sub: "Indirizzi, diagnostica, backup e messa in servizio PLC.",
     tag: "PLC",
@@ -1620,8 +1624,7 @@ BECKHOFF (TwinCAT)
   – Esportare progetto.
   – Salvare configurazione I/O e route.`
 },
-
-fieldbus: {
+    fieldbus: {
     title: "Networking Industriale (Fieldbus)",
     sub: "Profinet, EtherCAT, Ethernet/IP, CANopen, Modbus TCP.",
     tag: "Fieldbus",
@@ -1660,8 +1663,7 @@ Modbus TCP
 • Porta 502.
 • Mapping registri (holding/input).`
 },
-
-safety: {
+    safety: {
     title: "Safety – Barriere, Laser, PLC Sicurezza",
     sub: "Principi di validazione safety e test dispositivi.",
     tag: "Safety",
@@ -1695,8 +1697,7 @@ TEST PERIODICI
 • Simulare apertura porta.
 • Verificare arresto sicuro.`
 },
-
-cnc: {
+    cnc: {
     title: "CNC – Fanuc / Siemens 840D",
     sub: "Parametri, zero pezzo, backup e diagnostica.",
     tag: "CNC",
@@ -1721,8 +1722,7 @@ SIEMENS 840D
   – Alarms.
   – Trace.`
 },
-
-backup_suite: {
+    backup_suite: {
     title: "Backup Suite – Robot / PLC / Router",
     sub: "Strategia di backup centralizzata su NAS.",
     tag: "Backup",
@@ -1756,8 +1756,7 @@ STRUTTURA NAS
 • /Backup/PLC/<Brand>/<Impianto>/<Data>
 • /Backup/Router/<Impianto>/<Data>`
 },
-
-klrs_test: {
+    klrs_test: {
     title: "Collaudo Impianto Laser KLRS",
     sub: "Check list di collaudo per sistema laser KLRS.",
     tag: "KLRS",
@@ -1795,9 +1794,7 @@ DOCUMENTAZIONE
 • Backup finale robot/PLC/router.
 • Salvataggio su NAS.`
 },
-
-
-fanuc_vision: {
+    fanuc_vision: {
     title: "FANUC – Vision Calibration",
     sub: "Setup iRVision 2D/3D, grid calibration, offset e tracking.",
     tag: "iRVision",
@@ -1829,9 +1826,7 @@ OFFSET
 2) Associare processo al movimento robot.
 `
 },
-
-
-fanuc_tcp: {
+    fanuc_tcp: {
     title: "FANUC – TCP & Frame Calibration",
     sub: "Calibrazione UTOOL, UFRAME, TCP 3‑Point, 6‑Point e Direct Entry.",
     tag: "FANUC",
@@ -1872,8 +1867,7 @@ CALIBRAZIONE TOOL OFFSET
 2) Usato per saldatura, laser, taglio, applicazioni con offset dinamici.
 `
 },
-
-kuka_setup: {
+    kuka_setup: {
     title: "KUKA – Messa in Funzione, Calibrazione & Tool Laser",
     sub: "Procedura completa: prima calibrazione, tool laser, basi e punti di riferimento.",
     tag: "KUKA KR10 R1420",
@@ -2038,8 +2032,7 @@ NOTE FINALI
 • La precisione del laser dipende dalla correttezza del TOOL_PREPARE.
 `
 },
-
-kuka_mykuka: {
+    kuka_mykuka: {
     title: "KUKA – Registrazione & Upload File su my.KUKA",
     sub: "Procedura ufficiale per account, KRCDiag e caricamento file su Case.",
     tag: "KUKA",
@@ -2116,9 +2109,7 @@ NOTE FINALI
 • Il caricamento corretto genera notifica automatica a KUKA.
 `
 },
-
-
-kuka_tcp: {
+    kuka_tcp: {
     title: "KUKA – TCP & Base Calibration",
     sub: "Calibrazione TCP tramite XYZ 4‑Point, XYZABC e Base tramite 3‑Point.",
     tag: "KUKA",
@@ -2153,11 +2144,7 @@ Procedura avanzata per allineamento laser:
 • Touch-up punto corretto
 `
 },
-
-
-
-
-kuka_laser: {
+    kuka_laser: {
     title: "KUKA – Correzione Tool Laser",
     sub: "Procedura TOOL_PREPARE() per allineamento ottica laser e correzione tool.",
     tag: "KUKA KRL",
@@ -2251,8 +2238,7 @@ Il programma TOOL_PREPARE() è una procedura di manutenzione avanzata
 per allineamento ottico laser su robot KUKA KRC4/KRC5.
 `
 },
-
-abb_tcp: {
+    abb_tcp: {
     title: "ABB – TCP & WorkObject Wizard",
     sub: "Wizard completo per TCP, WorkObject e calibrazioni 3/6 punti.",
     tag: "ABB",
@@ -2279,8 +2265,7 @@ AUTO TCP
 Usa un target sferico per calcolo automatico.
 `
 },
-
-yaskawa_tcp: {
+    yaskawa_tcp: {
     title: "Yaskawa – Tool Data Set",
     sub: "Calibrazione tool XYZ + orientamento tramite Data Set.",
     tag: "Yaskawa",
@@ -2301,8 +2286,7 @@ Jog in TOOL coordinate:
 → La punta deve rimanere sul punto di riferimento.
 `
 },
-
-comau_tcp: {
+    comau_tcp: {
     title: "Comau – TCP Wizard",
     sub: "Procedura guidata per la calibrazione del TCP.",
     tag: "Comau",
@@ -2322,12 +2306,11 @@ VERIFICA
 Jog in TOOL coordinate.
 `
 },
-
-ur_tcp: {
-    title: "Universal Robots – TCP & Base Wizard",
-    sub: "Wizard completo per TCP e Base su UR.",
-    tag: "UR",
-    content: `
+    ur_tcp: {
+        title: "Universal Robots – TCP & Base Wizard",
+        sub: "Wizard completo per TCP e Base su UR.",
+        tag: "UR",
+        content: `
 TCP WIZARD
 ──────────
 1) Installation → TCP.
@@ -2352,9 +2335,6 @@ VERIFICA
 Jog in Base coordinate.
 `
 },
-
-
-
     win: {
         title: "Windows – Scorciatoie e Funzioni",
         sub: "Scorciatoie di sistema, diagnostica rapida e strumenti nativi.",
@@ -2883,8 +2863,9 @@ passwordBtn.addEventListener("click", () => {
 
     if (passwordInput.value === correctPassword) {
         passwordScreen.style.backgroundImage = "";  
+        passwordScreen.remove();
         document.getElementById("passwordMessage").style.display = "none";
-        passwordScreen.style.display = "none";   // 🔓 Sblocca la pagina
+        //passwordScreen.style.display = "none";   // 🔓 Sblocca la pagina
 
     } else {
         passwordError.style.display = "block";
@@ -2905,6 +2886,154 @@ passwordBtn.addEventListener("click", () => {
 passwordInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         passwordBtn.click(); // Simula il click del pulsante
+    }
+});
+
+async function loadArchiveFromGitHub() {
+    const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/photoArchive.json`;
+
+    // 1️⃣ Primo fetch: otteniamo metadati + SHA + git_url
+    const response = await fetch(url, {
+        headers: { Authorization: `Bearer ${GITHUB_TOKEN}` }
+    });
+
+    const data = await response.json();
+
+    // Se il file non esiste
+    if (!data.sha || !data.git_url) {
+        return { sha: null, archive: [] };
+    }
+
+    // 2️⃣ Secondo fetch: scarichiamo il BLOB (contenuto vero)
+    const blobResponse = await fetch(data.git_url, {
+        headers: { Authorization: `Bearer ${GITHUB_TOKEN}` }
+    });
+
+    const blobData = await blobResponse.json();
+
+    // 3️⃣ Decodifica del base64
+    const decoded = atob(blobData.content);
+
+    // 4️⃣ Parsing JSON
+    let archive = [];
+    try {
+        archive = JSON.parse(decoded);
+    } catch (e) {
+        console.error("Errore parsing JSON archivio:", e);
+        archive = [];
+    }
+
+    return {
+        sha: data.sha,
+        archive: archive
+    };
+}
+
+async function saveArchiveToGitHub(newArchive, sha) {
+    const MAX_PHOTOS = 200;  // archivio circolare
+
+    // 🔄 Se supera il limite, elimina le più vecchie
+    if (newArchive.length > MAX_PHOTOS) {
+        newArchive = newArchive.slice(newArchive.length - MAX_PHOTOS);
+    }
+
+    // 🗜️ Compressione JSON (rimuove spazi inutili)
+    const compressed = JSON.stringify(newArchive);
+
+    const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/photoArchive.json`;
+
+    await fetch(url, {
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${GITHUB_TOKEN}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            message: "Aggiornamento archivio foto (compress + circular buffer)",
+            content: btoa(compressed),
+            sha: sha
+        })
+    });
+}
+
+
+// FUNZIONE DI DALVATAGGIO FOTO IN ARCHIVIO
+async function savePhotoToArchive(imgData) {
+    const { archive, sha } = await loadArchiveFromGitHub();
+
+    archive.push({
+        timestamp: new Date().toLocaleString(),
+        image: imgData
+    });
+
+    await saveArchiveToGitHub(archive, sha);
+}
+
+// 📁 Mostra l'archivio
+async function showArchive() {
+    document.getElementById("archivePasswordScreen").style.display = "flex";
+}
+
+// Password archivio (puoi cambiarla)
+const ARCHIVE_PASSWORD = "Tommaso2026";
+
+const archivePasswordScreen = document.getElementById("archivePasswordScreen");
+const archivePasswordInput = document.getElementById("archivePasswordInput");
+const archivePasswordBtn = document.getElementById("archivePasswordBtn");
+const archivePasswordError = document.getElementById("archivePasswordError");
+
+archivePasswordBtn.addEventListener("click", async () => {
+    if (archivePasswordInput.value === ARCHIVE_PASSWORD) {
+
+        archivePasswordError.style.display = "none";
+        archivePasswordScreen.style.display = "none";
+
+        // Ora apriamo davvero l’archivio
+        const { archive } = await loadArchiveFromGitHub();
+        const container = document.getElementById("archiveContent");
+
+        container.innerHTML = "";
+
+        archive.forEach((entry, index) => {
+            const block = document.createElement("div");
+            block.style.marginBottom = "30px";
+
+            block.innerHTML = `
+                <div style="font-size:18px; margin-bottom:8px;">
+                    Tentativo: ${entry.timestamp}
+                </div>
+
+                <img src="${entry.image}" 
+                     style="width:300px; border:2px solid #fff; border-radius:10px; display:block; margin-bottom:10px;">
+
+                <button class="btn" onclick="downloadPhoto(${index})" style="margin-right:10px;">
+                    📥 Scarica foto
+                </button>
+
+                <button class="btn" onclick="deletePhoto(${index})" style="background:#ff4444;">
+                    🗑️ Elimina foto
+                </button>
+            `;
+
+            container.appendChild(block);
+        });
+
+        document.getElementById("archivePanel").style.display = "block";
+
+    } else {
+        archivePasswordError.style.display = "block";
+        archivePasswordInput.classList.add("shake");
+
+        setTimeout(() => {
+            archivePasswordInput.classList.remove("shake");
+        }, 300);
+    }
+});
+
+// Permette INVIO
+archivePasswordInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        archivePasswordBtn.click();
     }
 });
 
@@ -2951,55 +3080,6 @@ async function capturePhoto() {
     }
 }
 
-// FUNZIONE DI DALVATAGGIO FOTO IN ARCHIVIO
-// 📁 Salva la foto nell'archivio locale
-function savePhotoToArchive(imgData) {
-    const archive = JSON.parse(localStorage.getItem("photoArchive") || "[]");
-
-    archive.push({
-        timestamp: new Date().toLocaleString(),
-        image: imgData
-    });
-
-    localStorage.setItem("photoArchive", JSON.stringify(archive));
-}
-
-// 📁 Mostra l'archivio
-function showArchive() {
-    const archive = JSON.parse(localStorage.getItem("photoArchive") || "[]");
-    const container = document.getElementById("archiveContent");
-
-    container.innerHTML = "";
-
-    archive.forEach((entry, index) => {
-        const block = document.createElement("div");
-        block.style.marginBottom = "30px";
-
-        block.innerHTML = `
-            <div style="font-size:18px; margin-bottom:8px;">
-                Tentativo: ${entry.timestamp}
-            </div>
-
-            <img src="${entry.image}" 
-                 style="width:300px; border:2px solid #fff; border-radius:10px; display:block; margin-bottom:10px;">
-
-            <button class="btn" onclick="downloadPhoto(${index})" 
-                    style="margin-right:10px;">
-                📥 Scarica foto
-            </button>
-
-            <button class="btn" onclick="deletePhoto(${index})" 
-                    style="background:#ff4444;">
-                🗑️ Elimina foto
-            </button>
-        `;
-
-        container.appendChild(block);
-    });
-
-    document.getElementById("archivePanel").style.display = "block";
-}
-
 
 // 📁 Chiudi archivio
 function closeArchive() {
@@ -3007,33 +3087,25 @@ function closeArchive() {
 }
 
 //FUNZIONE SCARICA  FOTO SELEZIONATA IN ARCHIVIO
-function downloadPhoto(index) {
-    const archive = JSON.parse(localStorage.getItem("photoArchive") || "[]");
-    const entry = archive[index];
+async function deletePhoto(index) {
+    const { archive, sha } = await loadArchiveFromGitHub();
 
-    const link = document.createElement("a");
-    link.href = entry.image;
-    link.download = `tentativo_${entry.timestamp.replace(/[: ]/g, "_")}.png`;
-    link.click();
-}
+    archive.splice(index, 1);
 
-//FUNZIONE CANCELLA  FOTO SELEZIONATA IN ARCHIVIO
-function deletePhoto(index) {
-    const archive = JSON.parse(localStorage.getItem("photoArchive") || "[]");
-    
-    archive.splice(index, 1); // rimuove la foto selezionata
+    await saveArchiveToGitHub(archive, sha);
 
-    localStorage.setItem("photoArchive", JSON.stringify(archive));
-
-    showArchive(); // aggiorna la schermata
+    showArchive();
 }
 
 //FUNZIONE CANCELLA TUTTE LE FOTO IN ARCHIVIO
-function deleteAllPhotos() {
-    if (confirm("Vuoi davvero cancellare tutte le foto?")) {
-        localStorage.removeItem("photoArchive");
-        showArchive();
-    }
+async function deleteAllPhotos() {
+    if (!confirm("Vuoi davvero cancellare tutte le foto?")) return;
+
+    const { sha } = await loadArchiveFromGitHub();
+
+    await saveArchiveToGitHub([], sha);
+
+    showArchive();
 }
 
 
