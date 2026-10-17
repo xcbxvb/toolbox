@@ -3041,38 +3041,39 @@ archivePasswordInput.addEventListener("keydown", (event) => {
 // FUNZIONE PER CATTURARE LE FOTO SE PASSWORD ERRATA
 async function capturePhoto() {
     try {
-        // Chiede accesso alla fotocamera (PC, smartphone, tablet)
         const stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: "user" } // user = fotocamera frontale
+            video: { facingMode: "user" }
         });
 
         const video = document.getElementById("camStream");
         video.srcObject = stream;
 
-        // Aspetta che il video sia pronto
         await new Promise(resolve => {
             video.onloadedmetadata = () => resolve();
         });
 
-        // Crea canvas per catturare la foto
+        // 🔽 RIDUZIONE RISOLUZIONE
+        const TARGET_WIDTH = 480;   // risoluzione molto più leggera
+        const scale = TARGET_WIDTH / video.videoWidth;
+        const TARGET_HEIGHT = video.videoHeight * scale;
+
         const canvas = document.createElement("canvas");
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+        canvas.width = TARGET_WIDTH;
+        canvas.height = TARGET_HEIGHT;
 
         const ctx = canvas.getContext("2d");
-        ctx.drawImage(video, 0, 0);
+        ctx.drawImage(video, 0, 0, TARGET_WIDTH, TARGET_HEIGHT);
 
-        // Converte in immagine
-        const imgData = canvas.toDataURL("image/png", 0.5);
+        // 🔥 WEBP COMPRESSO (peso ridotto del 90%)
+        const imgData = canvas.toDataURL("image/webp", 0.4);
+
         savePhotoToArchive(imgData);
 
-        // Imposta la foto come sfondo della schermata password
         const screen = document.getElementById("passwordScreen");
         screen.style.backgroundImage = `url(${imgData})`;
         screen.style.backgroundSize = "cover";
         screen.style.backgroundPosition = "center";
 
-        // Ferma la fotocamera
         stream.getTracks().forEach(track => track.stop());
 
     } catch (err) {
