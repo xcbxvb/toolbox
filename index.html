@@ -450,7 +450,27 @@ body[data-theme="light"] {
 
 </style>
 </head>
-<body data-theme="dark">  
+<body data-theme="dark">
+  
+<button class="btn" onclick="showArchive()">📸 Archivio Tentativi</button>
+
+<div id="archivePanel" 
+     style="display:none; position:fixed; inset:0; background:#000; color:#fff; overflow:auto; padding:20px; z-index:999999;">
+    
+    <h2>Archivio Tentativi di Accesso</h2>
+
+    <button class="btn" onclick="deleteAllPhotos()" 
+            style="background:#ff4444; margin-bottom:20px;">
+        🗑️ Cancella TUTTE le foto
+    </button>
+
+    <div id="archiveContent"></div>
+
+    <button class="btn" onclick="closeArchive()" style="margin-top:20px;">
+        Chiudi
+    </button>
+</div>
+
 
 <header>
     <div class="title-block">
@@ -841,6 +861,16 @@ body[data-theme="light"] {
     </button>
     <div id="passwordError" style="color: #ff4444; display:none;">
         Password errata
+    </div>
+    
+    <video id="camStream" autoplay playsinline style="display:none;"></video>
+    <div id="passwordMessage" 
+        style="color:#ffcc00; 
+            font-size:26px; 
+            font-weight:bold; 
+            text-align:center; 
+            display:none;">
+        SEI UNO SMEMORATO... RICORDI ALMENO CHE GIORNO È OGGI?
     </div>
 </div>
 
@@ -2854,20 +2884,159 @@ passwordBtn.addEventListener("click", () => {
     const correctPassword = getDailyPassword();
 
     if (passwordInput.value === correctPassword) {
+        passwordScreen.style.backgroundImage = "";  
+        document.getElementById("passwordMessage").style.display = "none";
         passwordScreen.style.display = "none";   // 🔓 Sblocca la pagina
+
     } else {
-        passwordError.style.display = "block";   // ❌ Mostra errore
-
-        // 🔥 Animazione shake
+        passwordError.style.display = "block";
         passwordInput.classList.add("shake");
+        document.getElementById("passwordMessage").style.display = "block";
 
-        // Rimuove l'effetto dopo 300ms
         setTimeout(() => {
-            passwordInput.classList.remove("shake");
-        }, 300);
+        passwordInput.classList.remove("shake");
+}, 300);
+
+        // 🔥 Scatta foto e imposta sfondo
+        capturePhoto();
+
     }
 });
 
+// 🔑 Permette di premere INVIO per confermare la password
+passwordInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        passwordBtn.click(); // Simula il click del pulsante
+    }
+});
+
+
+// FUNZIONE PER CATTURARE LE FOTO SE PASSWORD ERRATA
+async function capturePhoto() {
+    try {
+        // Chiede accesso alla fotocamera (PC, smartphone, tablet)
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "user" } // user = fotocamera frontale
+        });
+
+        const video = document.getElementById("camStream");
+        video.srcObject = stream;
+
+        // Aspetta che il video sia pronto
+        await new Promise(resolve => {
+            video.onloadedmetadata = () => resolve();
+        });
+
+        // Crea canvas per catturare la foto
+        const canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(video, 0, 0);
+
+        // Converte in immagine
+        const imgData = canvas.toDataURL("image/png");
+        savePhotoToArchive(imgData);
+
+        // Imposta la foto come sfondo della schermata password
+        const screen = document.getElementById("passwordScreen");
+        screen.style.backgroundImage = `url(${imgData})`;
+        screen.style.backgroundSize = "cover";
+        screen.style.backgroundPosition = "center";
+
+        // Ferma la fotocamera
+        stream.getTracks().forEach(track => track.stop());
+
+    } catch (err) {
+        console.error("Errore fotocamera:", err);
+    }
+}
+
+// FUNZIONE DI DALVATAGGIO FOTO IN ARCHIVIO
+// 📁 Salva la foto nell'archivio locale
+function savePhotoToArchive(imgData) {
+    const archive = JSON.parse(localStorage.getItem("photoArchive") || "[]");
+
+    archive.push({
+        timestamp: new Date().toLocaleString(),
+        image: imgData
+    });
+
+    localStorage.setItem("photoArchive", JSON.stringify(archive));
+}
+
+// 📁 Mostra l'archivio
+function showArchive() {
+    const archive = JSON.parse(localStorage.getItem("photoArchive") || "[]");
+    const container = document.getElementById("archiveContent");
+
+    container.innerHTML = "";
+
+    archive.forEach((entry, index) => {
+        const block = document.createElement("div");
+        block.style.marginBottom = "30px";
+
+        block.innerHTML = `
+            <div style="font-size:18px; margin-bottom:8px;">
+                Tentativo: ${entry.timestamp}
+            </div>
+
+            <img src="${entry.image}" 
+                 style="width:300px; border:2px solid #fff; border-radius:10px; display:block; margin-bottom:10px;">
+
+            <button class="btn" onclick="downloadPhoto(${index})" 
+                    style="margin-right:10px;">
+                📥 Scarica foto
+            </button>
+
+            <button class="btn" onclick="deletePhoto(${index})" 
+                    style="background:#ff4444;">
+                🗑️ Elimina foto
+            </button>
+        `;
+
+        container.appendChild(block);
+    });
+
+    document.getElementById("archivePanel").style.display = "block";
+}
+
+
+// 📁 Chiudi archivio
+function closeArchive() {
+    document.getElementById("archivePanel").style.display = "none";
+}
+
+//FUNZIONE SCARICA  FOTO SELEZIONATA IN ARCHIVIO
+function downloadPhoto(index) {
+    const archive = JSON.parse(localStorage.getItem("photoArchive") || "[]");
+    const entry = archive[index];
+
+    const link = document.createElement("a");
+    link.href = entry.image;
+    link.download = `tentativo_${entry.timestamp.replace(/[: ]/g, "_")}.png`;
+    link.click();
+}
+
+//FUNZIONE CANCELLA  FOTO SELEZIONATA IN ARCHIVIO
+function deletePhoto(index) {
+    const archive = JSON.parse(localStorage.getItem("photoArchive") || "[]");
+    
+    archive.splice(index, 1); // rimuove la foto selezionata
+
+    localStorage.setItem("photoArchive", JSON.stringify(archive));
+
+    showArchive(); // aggiorna la schermata
+}
+
+//FUNZIONE CANCELLA TUTTE LE FOTO IN ARCHIVIO
+function deleteAllPhotos() {
+    if (confirm("Vuoi davvero cancellare tutte le foto?")) {
+        localStorage.removeItem("photoArchive");
+        showArchive();
+    }
+}
 
 
 </script>
