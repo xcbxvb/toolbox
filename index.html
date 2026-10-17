@@ -3049,8 +3049,13 @@ async function capturePhoto() {
         video.srcObject = stream;
 
         await new Promise(resolve => {
-            video.onloadedmetadata = () => resolve();
-        });
+    			video.onplaying = () => resolve();
+    			video.onloadeddata = () => resolve();
+				});
+				
+				// attesa minima per il primo frame reale
+				await new Promise(r => setTimeout(r, 150));
+
 
         // 🔽 RIDUZIONE RISOLUZIONE
         const TARGET_WIDTH = 480;   // risoluzione molto più leggera
