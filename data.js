@@ -1557,7 +1557,7 @@ Email: <a href="mailto:help@telecom26.ch">help@telecom26.ch</a><br>
     </a>
   </td>
   <td>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.android.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$B728-F9PH$1.3.6.1.4.1.53460.7.5.1.1" width="80">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.android.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$B728-F9PH$1.3.6.1.4.1.53460.7.5.1.1" width="40">
   </td>
 </tr> 
 
@@ -1572,7 +1572,7 @@ Email: <a href="mailto:help@telecom26.ch">help@telecom26.ch</a><br>
     </a>
   </td>
   <td>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.android.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$1RLY-6I2C$1.3.6.1.4.1.53460.7.5.1.1" width="80">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.android.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$1RLY-6I2C$1.3.6.1.4.1.53460.7.5.1.1" width="40">
   </td>
 </tr>
 </table>
@@ -1590,7 +1590,7 @@ Email: <a href="mailto:help@telecom26.ch">help@telecom26.ch</a><br>
     </a>
   </td>
   <td>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$B728-F9PH$1.3.6.1.4.1.53460.7.5.1.1" width="80">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$B728-F9PH$1.3.6.1.4.1.53460.7.5.1.1" width="40">
   </td>
 </tr>
 
@@ -1605,7 +1605,7 @@ Email: <a href="mailto:help@telecom26.ch">help@telecom26.ch</a><br>
     </a>
   </td>
   <td>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$1RLY-6I2C$1.3.6.1.4.1.53460.7.5.1.1" width="80">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$1RLY-6I2C$1.3.6.1.4.1.53460.7.5.1.1" width="40">
   </td>
 </tr>
 </table>  
@@ -1615,7 +1615,7 @@ Email: <a href="mailto:help@telecom26.ch">help@telecom26.ch</a><br>
 <tr>
   <td>
 	 <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://t26.ch/APN-globalnet" 
-	     width="80" 
+	     width="40" 
 	     alt="QR APN globalnet">
   </td>
 </tr>
