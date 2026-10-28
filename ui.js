@@ -1,4 +1,4 @@
-
+﻿
 // ELEMENTI PRINCIPALI
 const cardGrid = document.getElementById("cardGrid");
 const detailPanel = document.getElementById("detailPanel");
@@ -24,7 +24,6 @@ function hideRobotSection() {
     robotBrandMenu.style.display = "none";
     robotModelMenu.style.display = "none";
     robotCatalog.style.display = "none";
-    detailPanel.style.display = "none";
 }
 
 function updateCardSizeControlsVisibility() {
@@ -38,11 +37,22 @@ function updateCardSizeControlsVisibility() {
 
 // CLICK SU CARD
 cardGrid.addEventListener("click", e => {
-    const card = e.target.closest(".card");
+    const card = e.target.closest(".card"); 
+ 
     if (!card) return;
 
     const id = card.dataset.id;
     const item = data[id];
+
+   
+   if (id.startsWith("manuali_")) {
+    document.getElementById("manualRobotDownloadArea").style.display = "block";
+		} else {
+    document.getElementById("manualRobotDownloadArea").style.display = "none";
+		}
+ 
+
+
 
     // ?? Memorizza quali card erano visibili
     previousVisibleCards = [];
@@ -65,7 +75,8 @@ cardGrid.addEventListener("click", e => {
 
     // ?? Mostra pannello dettagli
     panelTitle.textContent = item.title;
-    panelContent.textContent = item.content;
+    panelContent.innerHTML = item.content;
+
     detailPanel.style.display = "block";
 
     // ?? Mostra pulsante Indietro
@@ -74,6 +85,7 @@ cardGrid.addEventListener("click", e => {
     // ?? Gestione download KUKA
     const downloadArea = document.getElementById("downloadArea");
     downloadArea.style.display = (id === "kuka_download") ? "flex" : "none";
+    
     updateCardSizeControlsVisibility();
 });
 
@@ -107,11 +119,15 @@ themeToggle.addEventListener("click", () => {
 
 
 // FILTRO "TUTTO"
-document.querySelector("button[data-filter='all']").addEventListener("click", () => {
-    document.querySelectorAll(".card").forEach(card => card.style.display = "block");
-    hideRobotSection();
-    updateCardSizeControlsVisibility();
+document.querySelectorAll(".card").forEach(card => {
+    const group = card.dataset.group;
+    card.style.display = (group !== "manuali") ? "block" : "none";
 });
+
+hideRobotSection();
+detailPanel.style.display = "none";
+
+updateCardSizeControlsVisibility();
 
 
 
@@ -142,6 +158,28 @@ document.querySelectorAll("button[data-filter]").forEach(btn => {
 });
 
 
+document.getElementById("manualiBtn").addEventListener("click", () => {
+
+    document.querySelectorAll(".card").forEach(c => {
+        const group = c.dataset.group;
+        c.style.display = (group === "manuali") ? "block" : "none";
+    });
+
+    hideRobotSection();
+    detailPanel.style.display = "none";
+
+    document.getElementById("downloadArea").style.display = "none";
+    document.getElementById("manualRobotDownloadArea").style.display = "none";
+
+    updateCardSizeControlsVisibility();
+});
+
+
+
+
+
+
+
 document.getElementById("backButton").addEventListener("click", () => {
 
     // ?? Nasconde pannello dettagli
@@ -156,7 +194,10 @@ document.getElementById("backButton").addEventListener("click", () => {
     robotBrandMenu.style.display = previousRobotMenus.brand;
     robotModelMenu.style.display = previousRobotMenus.model;
     robotCatalog.style.display = previousRobotMenus.catalog;
-   
+    
+   	document.getElementById("downloadArea").style.display = "none";
+	 	document.getElementById("manualRobotDownloadArea").style.display = "none";
+
     updateCardSizeControlsVisibility();
 });
 

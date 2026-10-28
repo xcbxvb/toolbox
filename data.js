@@ -1,6 +1,21 @@
 ﻿
 
-const data = {
+const data = {  
+
+
+		manuali_fanuc: {
+		    title: "Manuali FANUC",
+		    content: `
+		<h3>Manuali FANUC</h3>
+		<ul>
+		<li>M‑10iD/12 – Maintenance</li>
+		<li>M‑20iD/25 – HandlingTool</li>
+		<li>R‑2000iC – Safety</li>
+		</ul>
+		`,
+		},
+
+
 
     fanuc_cpc: {
     title: "FANUC – DCS Cartesian Position Check (CPC)",
@@ -1302,7 +1317,9 @@ Tools → Ping / Trace
 
 Port Manager
     → Stato porte degli switch.`
-    },
+    }, 
+    
+    
     telto: {
         title: "Configurazione Router Teltonika",
         sub: "Procedura completa di prima configurazione (SIM, LAN, APN, Wi‑Fi, RMS, Backup).",
@@ -1385,7 +1402,224 @@ System → Backup → Backup configuration
 • Salvare il file nella cartella dedicata sul NAS
 
 Procedura completata.`
-    },
+    },  
+    
+    
+   telto_sms: {
+    title: "Teltonika – Comandi SMS Router (RUT/TRB)",
+    tag: "Teltonika",
+    content: `
+<h3>Comandi SMS Teltonika (Router RUT / TRB)</h3>
+
+<h4>🔄 Sistema</h4>
+• reboot — Riavvia router  
+• restore — Ripristino fabbrica  
+• userdefaults — Ripristino configurazione utente  
+• fw_upgrade — Aggiornamento firmware da server  
+
+<h4>📡 Mobile Data</h4>
+• mobileon — Attiva dati mobili  
+• mobileoff — Disattiva dati mobili  
+• reset_conn — Reset connessione mobile  
+• cellular or cellcfg — Cambia impostazioni mobile   
+
+
+<h4>📶 Wi‑Fi</h4>
+• wifion — Attiva Wi‑Fi  
+• wifioff — Disattiva Wi‑Fi  
+
+<h4>🔐 Accesso</h4>
+• sshon — Abilita SSH  
+• sshoff — Disabilita SSH  
+• webon — Abilita WebUI  
+• weboff — Disabilita WebUI  
+
+<h4>🔗 OpenVPN</h4>
+• vpnon — Avvia OpenVPN  
+• vpnoff — Ferma OpenVPN  
+• vpnstatus — Stato OpenVPN  
+
+<h4>🧩 Profili</h4>
+• profiles — Lista profili  
+• pr <nome> or pr — Cambia profilo  
+• profdisp — Mostra profili disponibili  
+
+<h4>📡 RMS</h4>
+• rms_status — Stato RMS  
+• rms_connect — Connessione RMS  
+• rms_on — Attiva RMS  
+• rms_off — Disattiva RMS  
+
+<h4>📟 I/O</h4>
+• iostatus — Stato I/O  
+• ioset — Cambia stato I/O  
+
+<h4>🛡 Sicurezza / Blocco</h4>
+• ip_unblock — Sblocca IP bloccati  
+
+<h4>🧰 API / UCI</h4>
+• api — API via SMS  
+• uci — Comandi UCI  
+
+<h4>📲 SIM</h4>
+• switch_sim — Cambia SIM fisica  
+
+<h4>📋 Altro</h4>
+• status — Stato router  
+• monitoring_status — Monitoraggio Stato router 
+• more — Informazioni aggiuntive  
+
+<br>
+<b>Autorizzazione:</b> tutti i comandi richiedono password admin del router.
+`
+}, 
+
+
+ telto_sim: {
+    title: "SIM Clienti – Telecom26",
+    tag: "Telecom26",
+    content: ` 
+<h2>SIM Telecom26 – Dettagli</h2>
+
+<b>Contatti:</b><br>
+WhatsApp: <a href="https://wa.me/41763626974" target="_blank">+41 763626974</a><br>
+Email: <a href="mailto:francescod@telecom26.ch">francescod@telecom26.ch</a><br>
+Email: <a href="mailto:alerts@telecom26.ch">alerts@telecom26.ch</a><br>
+Email: <a href="mailto:help@telecom26.ch">help@telecom26.ch</a><br>
+
+<h2>APN="globalnet"</h2>
+
+<h2>SIM Registrate</h2>
+
+<table>
+<tr><th>Tipo</th><th>Alias</th><th>ICC</th><th>PIN</th><th>PUK</th><th>PRIMARY MSISDN (numero tel)</th><th>Password Router</th></tr>
+<tr><td>SIM</td><td>SIM_C01_KLRS_2019_BARI</td><td>8988306002411703817</td><td>1546</td><td>18575269</td><td>+8832100004988</td><td>Assistenza.25</td></tr>
+<tr><td>SIM</td><td>SIM_C02_KLS+R_2020_POZNAN_POLONIA</td><td>8988306002411714541</td><td>7778</td><td>22447049</td><td>+8832100020018</td><td>Assistenza_25</td></tr>
+<tr><td>SIM</td><td>SIM_C03_KLS+R_2020_TATABANYA</td><td>8988306002411703809</td><td>9398</td><td>83886426</td><td>+8832100001872</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>SIM_C04_KLRS_2022_PUNE</td><td>8988306002411714525</td><td>6238</td><td>88416615</td><td>+8832100011402</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>SIM_C05_KLS+R_2022_BURGOS</td><td>8988306002411714558</td><td>7001</td><td>71547702</td><td>+8832100004484</td><td>Assistenza.25</td></tr>
+<tr><td>SIM</td><td>SIM_C06_KRS_2024_SUMITOMO_GIAPPONE</td><td>8988306002411714566</td><td>5311</td><td>05956819</td><td>+8832100004694</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>SIM_C07_KRS_2022_TOKYO_GIAPPONE</td><td>8988306002411714574</td><td>9804</td><td>04843773</td><td>+8832100005109</td><td>Assistenza25</td></tr>  
+<tr><td>SIM</td><td>SIM_C08_KRS_2022_TATABANYA</td><td>8988306002411703825</td><td>8865</td><td>6573813</td><td>+8832100003293</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>SIM_C09_KRS_2023_NOKIAN</td><td>8988306002411714582</td><td>6576</td><td>87754084</td><td>+8832100010222</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>SIM_TEST_INTERNI</td><td>8988306002411714509</td><td>5001</td><td>13843538</td><td>+8832100004681</td><td>Fl4v14n0!</td></tr>
+<tr><td>SIM</td><td>SIM_C11_KRS_2023_SUMITOMO_TURCHIA</td><td>8988306002411714590</td><td>7388</td><td>31973450</td><td>+8832100004891</td><td>Assistenza25</td></tr>
+                    
+<tr><td>SIM</td><td>SIM_C13_KLRS_2024_ROMANIA</td><td>8900124071001741417</td><td>0960</td><td>85502311</td><td>+8832100005613</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>SIM_C14_MEM_2024_POZNAN</td><td>8988306002411703775</td><td>6539</td><td>99002993</td><td>+8832100004940</td><td>Assistenza25</td></tr>
+
+<tr><td>SIM</td><td>SIM_C16_KLS+R_2023_MEXICO</td><td>8988306002411714517</td><td>9825</td><td>85288806</td><td>+8832100006159</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>SIM_C17_1_KLRS_2023_AIKEN_USA</td><td>8988306002411714533</td><td>0530</td><td>47675166</td><td>+8832100005142</td><td>Assistenza_25</td></tr>
+<tr><td>SIM</td><td>GREENTECH_WIFI_HOME_GLM</td><td>8988306002411703791</td><td>8153</td><td>87229682</td><td>+8832100008159</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>SIM_C19_KLRS_2023_JOILIETTE_CANADA</td><td>8988306002411703833</td><td>2410</td><td>8439553</td><td>+8832100003401</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>SIM_C20_KRS_2024_JAPAN</td><td>8988306002411703841</td><td>9814</td><td>40815402</td><td>+8832100007355</td><td>Assistenza25</td></tr>
+
+<tr><td>SIM</td><td>SIM_C22_Laboratorio</td><td>8988306002411703783</td><td>4242</td><td>53252892</td><td>+8832100010511</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>SIM_C23_KRS_2026_THAILANDIA</td><td>8988306002411703858</td><td>7602</td><td>83610519</td><td>+8832100012117</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>GREENTECH_ORDER-1003_SIM06</td><td>8988306002411703866</td><td>7605</td><td>65956421</td><td>+8832100012273</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>GREENTECH_ORDER-1003_SIM07</td><td>8988306002411703874</td><td>9352</td><td>66196253</td><td>+8832100007347</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>GREENTECH_ORDER-1003_SIM08</td><td>8988306002411703882</td><td>7490</td><td>64456135</td><td>+8832100008175</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>GREENTECH_ORDER-1003_SIM09</td><td>8988306002411703890</td><td>4664</td><td>50752606</td><td>+8832100005590</td><td>Assistenza25</td></tr>
+<tr><td>SIM</td><td>GREENTECH_ORDER-1003_SIM10</td><td>8988306002411703924</td><td>6751</td><td>62695905</td><td>+8832100008136</td><td>Assistenza25</td></tr>
+</table>
+<br><br>
+<table> 
+<tr><th>Tipo</th><th>Alias</th><th>ICC</th><th>PIN</th><th>PUK</th><th>PRIMARY MSISDN (numero tel)</th><th>Stato</th></tr>          
+<tr><td>eSIM</td><td>eSIM1_Tommaso</td><td>8900424101001818993</td><td>7950</td><td>74287680</td><td>+8832100012203</td><td>ASSOCIATA</td></tr>
+<tr><td>eSIM</td><td>eSIM1_Michele</td><td>8900424101001819975</td><td>9842</td><td>79030419</td><td>+8832100006634</td><td>DISATTIVATA</td></tr>
+<tr><td>eSIM</td><td>eSIM2_Michele</td><td>8900424101001819983</td><td>3973</td><td>76981296</td><td>+8832100007510</td><td>DISATTIVATA</td></tr>
+<tr><td>eSIM</td><td>eSIM3_Michele</td><td>8900424101001819991</td><td>1393</td><td>85575097</td><td>+8832100005461</td><td>ASSOCIATA</td></tr>
+<tr><td>eSIM</td><td>eSIM4_Alias</td><td>8900424101001820007</td><td>9999</td><td>03138505</td><td>+8832100005584</td><td>ATTIVA e NON ASSOCIATA</td></tr>
+<tr><td>eSIM</td><td>eSIM5_Alias</td><td>8900424101001820015</td><td>3223</td><td>31919297</td><td>+8832100005822</td><td>ATTIVA e NON ASSOCIATA</td></tr>
+</table>
+<br><br>
+<table>
+<tr><th>Alias</th><th>Link Installazione per Android</th><th>QR Code</th></tr>
+<tr>
+  <td>eSIM4_Android_Alias</td>
+  <td>
+    <a href="https://esimsetup.android.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$B728-F9PH$1.3.6.1.4.1.53460.7.5.1.1">
+      Apri_Link_eSIM4_Android
+    </a> 
+    <a href="https://www.telecom26.ch/resources/telecom26-short-user-manual-android-may-25.pdf">
+      QuickStart_Guide_eSIM_Android
+    </a>
+  </td>
+  <td>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.android.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$B728-F9PH$1.3.6.1.4.1.53460.7.5.1.1" width="80">
+  </td>
+</tr> 
+
+<tr>
+  <td>eSIM5_Android_Alias</td>
+  <td>
+    <a href="https://esimsetup.android.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$1RLY-6I2C$1.3.6.1.4.1.53460.7.5.1.1">
+      Apri_Link_eSIM5_Android
+    </a> 
+    <a href="https://www.telecom26.ch/resources/telecom26-short-user-manual-android-may-25.pdf">
+      QuickStart_Guide_eSIM_Android
+    </a>
+  </td>
+  <td>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.android.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$1RLY-6I2C$1.3.6.1.4.1.53460.7.5.1.1" width="80">
+  </td>
+</tr>
+</table>
+<br><br>
+<table>
+<tr><th>Alias</th><th>Link Installazione per Iphone</th><th>QR Code</th></tr>
+<tr>
+  <td>eSIM4_Iphone_Alias</td>
+  <td>
+    <a href="https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$B728-F9PH$1.3.6.1.4.1.53460.7.5.1.1">
+      Apri_Link_eSIM4_Iphone
+    </a>  
+    <a href="https://www.telecom26.ch/resources/telecom26-short-user-manual-ios-may-25.pdf">
+      QuickStart_Guide_eSIM_Iphone
+    </a>
+  </td>
+  <td>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$B728-F9PH$1.3.6.1.4.1.53460.7.5.1.1" width="80">
+  </td>
+</tr>
+
+<tr>
+  <td>eSIM5_Iphone_Alias</td>
+  <td>
+    <a href="https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$1RLY-6I2C$1.3.6.1.4.1.53460.7.5.1.1">
+      Apri_Link_eSIM5_Iphone
+    </a>  
+    <a href="https://www.telecom26.ch/resources/telecom26-short-user-manual-ios-may-25.pdf">
+      QuickStart_Guide_eSIM_Iphone
+    </a>
+  </td>
+  <td>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$dp-plus-par07-01.oasis-smartsim.com$1RLY-6I2C$1.3.6.1.4.1.53460.7.5.1.1" width="80">
+  </td>
+</tr>
+</table>  
+<br><br>
+<table>
+<tr><th>Link Configurazione APN per Iphone</th></tr>
+<tr>
+  <td>
+	 <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://t26.ch/APN-globalnet" 
+	     width="80" 
+	     alt="QR APN globalnet">
+  </td>
+</tr>
+</table>
+
+<h2>Note</h2>
+• APN unico: globalnet  
+• Alias usati per identificare impianti laser  
+• PIN/PUK forniti da Telecom26  
+`
+},
+
+
+
+
     auto: {
         title: "Automazione Industriale (Fanuc, KUKA, ABB, Yaskawa, Comau, UR)",
         sub: "Funzioni chiave per robot industriali multi-brand.",

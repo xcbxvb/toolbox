@@ -23,60 +23,10 @@
 }
 
 </style>
-
-
-
 </head> 
 
 <body data-theme="dark">
   
-<button class="btn" onclick="showArchive()">📸 Archivio Tentativi</button>
-
-<div id="archivePanel" 
-     style="display:none; position:fixed; inset:0; background:#000; color:#fff; overflow:auto; padding:20px; z-index:999999;">
-    
-    <h2>Archivio Tentativi di Accesso</h2>
-
-    <button class="btn" onclick="deleteAllPhotos()" 
-            style="background:#ff4444; margin-bottom:20px;">
-        🗑️ Cancella TUTTE le foto
-    </button>
-
-    <div id="archiveContent"></div>
-
-    <button class="btn" onclick="closeArchive()" style="margin-top:20px;">
-        Chiudi
-    </button>
-</div>
-
-<div id="archivePasswordScreen" style="
-    position: fixed;
-    inset: 0;
-    background: #000;
-    color: #fff;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    z-index: 999999;
-">
-    <h2>Password Archivio</h2>
-
-    <input id="archivePasswordInput" type="password" placeholder="Password archivio"
-        style="padding: 12px; font-size: 18px; border-radius: 8px; width: 260px;">
-
-    <button id="archivePasswordBtn" class="btn" style="padding: 10px 20px; font-size: 18px;">
-        Accedi
-    </button>
-
-    <div id="archivePasswordError" style="color:#ff4444; display:none;">
-        Password errata
-    </div>
-</div>
-
-
-
 
 <header>
     <div class="title-block">
@@ -95,6 +45,7 @@
 
 <main>
 
+<!-- 🔘 FILTRI -->
 <div style="display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; margin-bottom:12px;">
     <div style="display:flex; gap:6px; flex-wrap:wrap;">
         <button class="btn" data-filter="all">Tutto</button>
@@ -102,22 +53,77 @@
         <button class="btn" data-filter="net">Networking</button>
         <button class="btn" data-filter="plc">PLC / CNC / Backup</button>
         <button class="btn" data-filter="sys">Windows / Script</button>
-        <button class="btn" data-filter="safety">Safety / Collaudo</button>
-    </div>
+        <button class="btn" data-filter="safety">Safety / Collaudo</button> 
+         <button class="btn" id="manualiBtn">Manuali</button>
+		</div>
+
 
     <!-- 🔥 PULSANTE INDIETRO NELLA SCHERMATA PRINCIPALE -->
     <button id="backButton" class="btn" style="display:none; margin-top:10px;">
         ⬅️ Indietro
     </button>
 
-<!-- 🔠 CONTROLLI DIMENSIONE CARD (punto esatto) -->
-<div class="card-size-controls" style="margin-bottom:12px; display:flex; gap:10px;">
-    <button id="cardMinus" class="btn">−</button>
-    <button id="cardPlus" class="btn">+</button>
-</div>
+		<!-- 🔠 CONTROLLI DIMENSIONE CARD (punto esatto) -->
+		<div class="card-size-controls" style="margin-bottom:12px; display:flex; gap:10px;">
+		    <button id="cardMinus" class="btn">−</button>
+		    <button id="cardPlus" class="btn">+</button>
+		</div>
 
-</div>
-<div class="grid" id="cardGrid">
+</div>  
+
+
+
+
+<!-- ?? GRIGLIA CARD -->
+<div class="grid" id="cardGrid"> 
+
+    <div class="card" data-id="manuali_fanuc" data-group="manuali" data-label="manuali fanuc pdf robot">
+		    <div class="card-header">
+		        <div class="card-title"><span class="icon">📘</span><span>Manuali FANUC</span></div>
+		        <div class="card-tag">Manuali</div>
+		    </div>
+		    <div class="card-desc">Documentazione tecnica FANUC.</div>
+		</div>
+		
+		<div class="card" data-id="manuali_kuka" data-group="manuali" data-label="manuali kuka pdf robot">
+		    <div class="card-header">
+		        <div class="card-title"><span class="icon">📘</span><span>Manuali KUKA</span></div>
+		        <div class="card-tag">Manuali</div>
+		    </div>
+		    <div class="card-desc">Documentazione tecnica KUKA.</div>
+		</div>
+		
+		<div class="card" data-id="manuali_abb" data-group="manuali" data-label="manuali abb pdf robot">
+		    <div class="card-header">
+		        <div class="card-title"><span class="icon">📘</span><span>Manuali ABB</span></div>
+		        <div class="card-tag">Manuali</div>
+		    </div>
+		    <div class="card-desc">Documentazione tecnica ABB.</div>
+		</div>
+		
+		<div class="card" data-id="manuali_yaskawa" data-group="manuali" data-label="manuali yaskawa pdf robot">
+		    <div class="card-header">
+		        <div class="card-title"><span class="icon">📘</span><span>Manuali Yaskawa</span></div>
+		        <div class="card-tag">Manuali</div>
+		    </div>
+		    <div class="card-desc">Documentazione tecnica Yaskawa.</div>
+		</div>
+		
+		<div class="card" data-id="manuali_comau" data-group="manuali" data-label="manuali comau pdf robot">
+		    <div class="card-header">
+		        <div class="card-title"><span class="icon">📘</span><span>Manuali Comau</span></div>
+		        <div class="card-tag">Manuali</div>
+		    </div>
+		    <div class="card-desc">Documentazione tecnica Comau.</div>
+		</div>
+		
+		<div class="card" data-id="manuali_ur" data-group="manuali" data-label="manuali ur pdf robot">
+		    <div class="card-header">
+		        <div class="card-title"><span class="icon">📘</span><span>Manuali UR</span></div>
+		        <div class="card-tag">Manuali</div>
+		    </div>
+		    <div class="card-desc">Documentazione tecnica Universal Robots.</div>
+		</div>
 
 
 
@@ -330,6 +336,23 @@
     <div class="card-footer"><span class="badge">RUT</span></div>
 </div>
 
+<div class="card" data-id="telto_sms" data-group="net" data-label="teltonika sms commands router rut trb">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">📡</span><span>Teltonika – Comandi SMS</span></div>
+        <div class="card-tag">Networking</div>
+    </div>
+    <div class="card-desc">Lista completa comandi SMS per router Teltonika.</div>
+</div>
+
+
+<div class="card" data-id="telto_sim" data-group="net" data-label="telecom26 sim clienti iccid pin puk apn globalnet">
+    <div class="card-header">
+        <div class="card-title"><span class="icon">📶</span><span>SIM Clienti – Telecom26</span></div>
+        <div class="card-tag">Networking</div>
+    </div>
+    <div class="card-desc">Dettagli SIM, ICCID, PIN/PUK, APN.</div>
+</div>
+
 <div class="card" data-id="fieldbus" data-group="net" data-label="profinet ethercat ethernetip canopen modbus tcp">
     <div class="card-header">
         <div class="card-title"><span class="icon">📡</span><span>Fieldbus Industriali</span></div>
@@ -501,8 +524,9 @@
 		 </div>
 	
         
-    <div class="panel-content">
-    <pre id="panelContent"></pre>
+  <div class="panel-content">
+    <div id="panelContent"></div>
+
 
     <button id="backButton" class="btn" style="margin-top:12px; display:none;">
         ⬅️ Indietro
@@ -513,7 +537,44 @@
     	<a href="TOOL_PREPARE.src" download class="btn">📥 Scarica TOOL_PREPARE.src</a>
     	<a href="TOOL_PREPARE.dat" download class="btn">📥 Scarica TOOL_PREPARE.dat</a>
     	<a href="TOOL_PREPARE.zip" download class="btn">🗜️ Scarica ZIP (src + dat)</a>
-	</div>
+		</div> 
+		
+		
+		<div id="manualRobotDownloadArea" style="margin-top:12px; display:none;">
+		
+		    <!-- FANUC -->
+		    <h3>FANUC</h3>
+		    <a href="manuali/FANUC/M10iD12_Maintenance.pdf" download class="btn">📥 M‑10iD/12 – Maintenance</a>
+		    <a href="manuali/FANUC/M20iD25_HandlingTool.pdf" download class="btn">📥 M‑20iD/25 – HandlingTool</a>
+		    <a href="manuali/FANUC/R2000iC_Safety.pdf" download class="btn">📥 R‑2000iC – Safety</a>
+		
+		    <!-- KUKA -->
+		    <h3>KUKA</h3>
+		    <a href="manuali/KUKA/KR10R1420_Safety.pdf" download class="btn">📥 KR10 R1420 – Safety</a>
+		    <a href="manuali/KUKA/KR60_KRC4_System.pdf" download class="btn">📥 KR60 – KRC4 System Integrator</a>
+		    <a href="manuali/KUKA/KR120_SafeOperation.pdf" download class="btn">📥 KR120 – SafeOperation</a>
+		
+		    <!-- ABB -->
+		    <h3>ABB</h3>
+		    <a href="manuali/ABB/IRB1200_Product.pdf" download class="btn">📥 IRB1200 – Product Manual</a>
+		    <a href="manuali/ABB/IRB6700_SafeMove.pdf" download class="btn">📥 IRB6700 – SafeMove</a>
+		
+		    <!-- YASKAWA -->
+		    <h3>Yaskawa</h3>
+		    <a href="manuali/YASKAWA/GP7_Maintenance.pdf" download class="btn">📥 GP7 – Maintenance</a>
+		    <a href="manuali/YASKAWA/GP25_DX200.pdf" download class="btn">📥 GP25 – DX200 Controller</a>
+		
+		    <!-- COMAU -->
+		    <h3>Comau</h3>
+		    <a href="manuali/COMAU/Racer5_Product.pdf" download class="btn">📥 Racer 5 – Product Manual</a>
+		    <a href="manuali/COMAU/NJ110_Safety.pdf" download class="btn">📥 Smart NJ110 – Safety</a>
+		
+		    <!-- UR -->
+		    <h3>Universal Robots</h3>
+		    <a href="manuali/UR/UR5_User.pdf" download class="btn">📥 UR5 – User Manual</a>
+		    <a href="manuali/UR/UR10_Safety.pdf" download class="btn">📥 UR10 – Safety / Installation</a>
+		
+		</div>
 
 </div>
 
