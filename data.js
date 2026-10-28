@@ -7,15 +7,9 @@ const data = {
 		    title: "Manuali FANUC",
 		    content: `
 		<h3>Manuali FANUC</h3>
-		<ul>
-		<li>M‑10iD/12 – Maintenance</li>
-		<li>M‑20iD/25 – HandlingTool</li>
-		<li>R‑2000iC – Safety</li>
-		</ul>
+
 		`,
 		},
-
-
 
     fanuc_cpc: {
     title: "FANUC – DCS Cartesian Position Check (CPC)",
@@ -1423,7 +1417,6 @@ Procedura completata.`
 • reset_conn — Reset connessione mobile  
 • cellular or cellcfg — Cambia impostazioni mobile   
 
-
 <h4>📶 Wi‑Fi</h4>
 • wifion — Attiva Wi‑Fi  
 • wifioff — Disattiva Wi‑Fi  
@@ -1462,12 +1455,12 @@ Procedura completata.`
 • uci — Comandi UCI  
 
 <h4>📲 SIM</h4>
-• switch_sim — Cambia SIM fisica  
+• switch_sim — Cambia SIM fisica   
 
 <h4>📋 Altro</h4>
-• status — Stato router  
-• monitoring_status — Monitoraggio Stato router 
-• more — Informazioni aggiuntive  
+• status — Stato router
+• monitoring_status — Monitoraggio Stato router
+• more — Informazioni aggiuntive
 
 <br>
 <b>Autorizzazione:</b> tutti i comandi richiedono password admin del router.
