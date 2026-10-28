@@ -9,7 +9,25 @@ const data = {
 		<h3>Manuali FANUC</h3>
 
 		`,
+		},  
+		
+		manuali_kuka: {
+		    title: "Manuali KUKA",
+		    content: `
+		<h3>Manuali KUKA</h3>
+
+		`,
+		}, 
+		
+		manuali_abb: {
+		    title: "Manuali ABB",
+		    content: `
+		<h3>Manuali ABB</h3>
+
+		`,
 		},
+
+
 
     fanuc_cpc: {
     title: "FANUC – DCS Cartesian Position Check (CPC)",

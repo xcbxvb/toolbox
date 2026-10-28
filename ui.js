@@ -44,12 +44,29 @@ cardGrid.addEventListener("click", e => {
     const id = card.dataset.id;
     const item = data[id];
 
-   
-   if (id.startsWith("manuali_")) {
-    document.getElementById("manualRobotDownloadArea").style.display = "block";
+		   // Nasconde tutto
+		document.getElementById("manualFanucArea").style.display = "none";
+		document.getElementById("manualKukaArea").style.display = "none";
+		document.getElementById("manualAbbArea").style.display = "none";
+		document.getElementById("manualYaskawaArea").style.display = "none";
+		document.getElementById("manualComauArea").style.display = "none";
+		document.getElementById("manualUrArea").style.display = "none";
+		
+		// Mostra solo il contenitore principale
+		if (id.startsWith("manuali_")) {
+		    document.getElementById("manualRobotDownloadArea").style.display = "block";
 		} else {
-    document.getElementById("manualRobotDownloadArea").style.display = "none";
+		    document.getElementById("manualRobotDownloadArea").style.display = "none";
 		}
+		
+		// Mostra solo il brand corretto
+		if (id === "manuali_fanuc") document.getElementById("manualFanucArea").style.display = "block";
+		if (id === "manuali_kuka") document.getElementById("manualKukaArea").style.display = "block";
+		if (id === "manuali_abb") document.getElementById("manualAbbArea").style.display = "block";
+		if (id === "manuali_yaskawa") document.getElementById("manualYaskawaArea").style.display = "block";
+		if (id === "manuali_comau") document.getElementById("manualComauArea").style.display = "block";
+		if (id === "manuali_ur") document.getElementById("manualUrArea").style.display = "block";
+
  
 
 
@@ -161,7 +178,7 @@ document.querySelectorAll("button[data-filter]").forEach(btn => {
 document.getElementById("manualiBtn").addEventListener("click", () => {
 
     document.querySelectorAll(".card").forEach(c => {
-        const group = c.dataset.group;
+        const group= c.dataset.group
         c.style.display = (group === "manuali") ? "block" : "none";
     });
 
