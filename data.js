@@ -6,24 +6,21 @@ const data = {
 		manuali_fanuc: {
 		    title: "Manuali FANUC",
 		    content: `
-		<h3>Manuali FANUC</h3>
-
+		<h1>Manuali FANUC</h1>
 		`,
-		},  
-		
+		}, 
+		 
 		manuali_kuka: {
 		    title: "Manuali KUKA",
 		    content: `
-		<h3>Manuali KUKA</h3>
-
+		<h1>Manuali KUKA</h1>
 		`,
-		}, 
+		}, 
 		
 		manuali_abb: {
 		    title: "Manuali ABB",
 		    content: `
-		<h3>Manuali ABB</h3>
-
+		<h1>Manuali ABB</h1>
 		`,
 		},
 
