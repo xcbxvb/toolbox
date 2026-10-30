@@ -23,6 +23,13 @@ const data = {
 		<h1>Manuali ABB</h1>
 		`,
 		},
+		
+		manuali_Javascript: {
+		    title: "Manuali Javascript",
+		    content: `
+		<h1>Manuali Javascript</h1>
+		`,
+		},
 
 
 

@@ -37,20 +37,23 @@ function updateCardSizeControlsVisibility() {
 
 // CLICK SU CARD
 cardGrid.addEventListener("click", e => {
-    const card = e.target.closest(".card"); 
+    const card = e.target.closest(".card");
+ 
  
     if (!card) return;
 
     const id = card.dataset.id;
     const item = data[id];
 
-		   // Nasconde tutto
+		   
+// Nasconde tutto
 		document.getElementById("manualFanucArea").style.display = "none";
 		document.getElementById("manualKukaArea").style.display = "none";
 		document.getElementById("manualAbbArea").style.display = "none";
 		document.getElementById("manualYaskawaArea").style.display = "none";
 		document.getElementById("manualComauArea").style.display = "none";
 		document.getElementById("manualUrArea").style.display = "none";
+		document.getElementById("manualJavascriptArea").style.display = "none";
 		
 		// Mostra solo il contenitore principale
 		if (id.startsWith("manuali_")) {
@@ -66,6 +69,7 @@ cardGrid.addEventListener("click", e => {
 		if (id === "manuali_yaskawa") document.getElementById("manualYaskawaArea").style.display = "block";
 		if (id === "manuali_comau") document.getElementById("manualComauArea").style.display = "block";
 		if (id === "manuali_ur") document.getElementById("manualUrArea").style.display = "block";
+		if (id === "manuali_Javascript") document.getElementById("manualJavascriptArea").style.display = "block";
 
  
 
@@ -102,7 +106,7 @@ cardGrid.addEventListener("click", e => {
     // ?? Gestione download KUKA
     const downloadArea = document.getElementById("downloadArea");
     downloadArea.style.display = (id === "kuka_download") ? "flex" : "none";
-    
+    
     updateCardSizeControlsVisibility();
 });
 
