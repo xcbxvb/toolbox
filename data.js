@@ -1235,7 +1235,10 @@ WIN + R → "msinfo32"     → Informazioni di sistema
 WIN + R → "perfmon"      → Monitoraggio prestazioni
 WIN + R → "eventvwr"     → Visualizzatore eventi
 WIN + R → "devmgmt.msc"  → Gestione dispositivi
+WIN + R → "temp"     		 → File inutili - seleziona tutto e elimina
+WIN + R → "%temp%"       → File inutili - seleziona tutto e elimina 
 WIN + R → "cleanmgr"     → Pulizia disco`
+ 
     },
     diag: {
         title: "Diagnostica PC Completa",
